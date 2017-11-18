@@ -32,16 +32,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveData();
-//                imeitx.getText().toString();
-//                String json = "{'imei':'"+((EditText)findViewById(R.id.input)).getText().toString()+"'}";
-//                try {
-//                    Utils.serializeInfo(((EditText)findViewById(R.id.input)).getText().toString());
-//                    String imei = Utils.deserializeInfoImei();
-//                    Log.e("ddd","jsonRes.imei:"+imei);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//                SPUtil.appput(getApplicationContext(),"imei",((EditText)findViewById(R.id.input)).getText().toString());
             }
         });
     }
