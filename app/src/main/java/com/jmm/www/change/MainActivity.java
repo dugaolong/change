@@ -1,10 +1,15 @@
 package com.jmm.www.change;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,22 +20,52 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final int REQUESTCODE_READ_PHONE_STATE = 1;
 
+    private EditText imeitx;
+    private Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        //请求权限
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {// ANDROID6.0 请求权限
-//            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-//                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUESTCODE_READ_PHONE_STATE);
-//            }
-//        }
-//        Log.e("Build","DeviceInfo="+ getDeviceInfo());
-
-
+        imeitx = ((EditText)findViewById(R.id.input));
+        button = ((Button)findViewById(R.id.button));
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveData();
+//                imeitx.getText().toString();
+//                String json = "{'imei':'"+((EditText)findViewById(R.id.input)).getText().toString()+"'}";
+//                try {
+//                    Utils.serializeInfo(((EditText)findViewById(R.id.input)).getText().toString());
+//                    String imei = Utils.deserializeInfoImei();
+//                    Log.e("ddd","jsonRes.imei:"+imei);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                SPUtil.appput(getApplicationContext(),"imei",((EditText)findViewById(R.id.input)).getText().toString());
+            }
+        });
+    }
+    /**
+     * 使用Sharedpreferences保存数据
+     */
+    private void saveData(){
+        try {
+            SharedPreferences sh = this.getSharedPreferences("prefs", Context.MODE_WORLD_READABLE);
+            SharedPreferences.Editor pre = sh.edit();
+            pre.putString("imei",imeitx.getText().toString());
+            pre.apply();
+            Toast.makeText(MainActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+        }catch (Throwable e){
+            e.printStackTrace();
+        }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ((TextView)findViewById(R.id.info)).setText(getDeviceInfo()+getSystemInfo());
+        this.printDeviceHardwareInfo();
+    }
     public static String getDeviceInfo() {
         StringBuffer sb = new StringBuffer();
         sb.append("主板： "+ Build.BOARD+"\n");
@@ -95,12 +130,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        ((TextView)findViewById(R.id.info)).setText(getDeviceInfo()+getSystemInfo());
-        this.printDeviceHardwareInfo();
-    }
+
 
 
     public String getSystemInfo() {
