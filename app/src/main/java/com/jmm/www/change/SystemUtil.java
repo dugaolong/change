@@ -24,7 +24,7 @@ public class SystemUtil {
     /**
      * 获取当前系统上的语言列表(Locale列表)
      *
-     * @return  语言列表
+     * @return 语言列表
      */
     public static Locale[] getSystemLanguageList() {
         return Locale.getAvailableLocales();
@@ -33,7 +33,7 @@ public class SystemUtil {
     /**
      * 获取当前手机系统版本号
      *
-     * @return  系统版本号
+     * @return 系统版本号
      */
     public static String getSystemVersion() {
         return android.os.Build.VERSION.RELEASE;
@@ -42,7 +42,7 @@ public class SystemUtil {
     /**
      * 获取手机型号
      *
-     * @return  手机型号
+     * @return 手机型号
      */
     public static String getSystemModel() {
         return android.os.Build.MODEL;
@@ -51,7 +51,7 @@ public class SystemUtil {
     /**
      * 获取手机厂商
      *
-     * @return  手机厂商
+     * @return 手机厂商
      */
     public static String getDeviceBrand() {
         return android.os.Build.BRAND;
@@ -60,7 +60,7 @@ public class SystemUtil {
     /**
      * 获取手机IMEI(需要“android.permission.READ_PHONE_STATE”权限)
      *
-     * @return  手机IMEI
+     * @return 手机IMEI
      */
     public static String getIMEI(Context ctx) {
         TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Activity.TELEPHONY_SERVICE);
