@@ -24,12 +24,13 @@ public class Info {
     public String connectionType;//wifi
     public String ip;//192.168.170.12
     public String androidId;//d1b32108050901eb
+    public String sdk_int;//19
 
 
     public Info() {
     }
 
-    public Info(String screenWidth, String screenHeight, String screenDensity, String model, String device, String androidVersion, String miuiVersion, String make, String imei, String mac, String language, String country, String connectionType, String ip, String androidId) {
+    public Info(String screenWidth, String screenHeight, String screenDensity, String model, String device, String androidVersion, String miuiVersion, String make, String imei, String mac, String language, String country, String connectionType, String ip, String androidId,String sdk_int) {
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
         this.screenDensity = screenDensity;
@@ -47,6 +48,7 @@ public class Info {
         this.connectionType = connectionType;
         this.ip = ip;
         this.androidId = androidId;
+        this.sdk_int = sdk_int;
     }
 
     public String getScreenWidth() {
@@ -167,6 +169,14 @@ public class Info {
 
     public void setAndroidId(String androidId) {
         this.androidId = androidId;
+    }
+
+    public String getSdk_int() {
+        return sdk_int;
+    }
+
+    public void setSdk_int(String sdk_int) {
+        this.sdk_int = sdk_int;
     }
 
     /**

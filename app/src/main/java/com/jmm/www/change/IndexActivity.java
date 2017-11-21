@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class IndexActivity extends Activity {
 
-    private EditText imei, screenWidth, screenHeight, screenDensity, model, device, androidVersion, miuiVersion, make, mac, language, country, connectionType, ip, androidId;
+    private EditText imei, screenWidth, screenHeight, screenDensity, model, device, androidVersion, miuiVersion, make, mac, language, country, connectionType, ip, androidId,sdk_int;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,7 @@ public class IndexActivity extends Activity {
         connectionType= (EditText) findViewById(R.id.connectionType);
         ip= (EditText) findViewById(R.id.ip);
         androidId= (EditText) findViewById(R.id.androidId);
+        sdk_int= (EditText) findViewById(R.id.sdk_int);
     }
 
     /**
@@ -72,6 +73,7 @@ public class IndexActivity extends Activity {
         connectionType.setText(info.getConnectionType());
         ip.setText(info.getIp());
         androidId.setText(info.getAndroidId());
+        sdk_int.setText(info.getSdk_int());
         try {
             SharedPreferences sh = this.getSharedPreferences("prefs", Context.MODE_WORLD_READABLE);
             SharedPreferences.Editor pre = sh.edit();
@@ -90,6 +92,7 @@ public class IndexActivity extends Activity {
             pre.putString("connectionType", info.getConnectionType());
             pre.putString("ip", info.getIp());
             pre.putString("androidId", info.getAndroidId());
+            pre.putString("sdk_int", info.getSdk_int());
             pre.apply();
             Toast.makeText(IndexActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
         } catch (Throwable e) {

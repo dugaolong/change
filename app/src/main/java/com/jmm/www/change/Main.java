@@ -13,6 +13,8 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
+import static android.os.Build.VERSION.SDK_INT;
+
 /**
  * Created by dugaolong on 17/11/17.
  */
@@ -35,6 +37,7 @@ public class Main implements IXposedHookLoadPackage {
     public String connectionType;//wifi
     public String ip;//192.168.170.12
     public String androidId;//d1b32108050901eb
+    public String sdk_int;//19
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws Throwable {
@@ -60,6 +63,7 @@ public class Main implements IXposedHookLoadPackage {
                 connectionType = pre.getString("connectionType", "1");
                 ip = pre.getString("ip", "192.168.170.18");
                 androidId = pre.getString("androidId", "d1b32100050901eb");
+                sdk_int = pre.getString("sdk_int", "19");
 
                 HookMethod(TelephonyManager.class, "getDeviceId", lpp);
                 HookMethodNetworkCountryIso(TelephonyManager.class, "getNetworkCountryIso", lpp);
@@ -82,6 +86,7 @@ public class Main implements IXposedHookLoadPackage {
                 XposedHelpers.setStaticObjectField(android.os.Build.class, "MODEL", model);//设备型号
                 XposedHelpers.setStaticObjectField(android.os.Build.VERSION.class, "INCREMENTAL", miuiVersion);
                 XposedHelpers.setStaticObjectField(android.os.Build.VERSION.class, "RELEASE",androidVersion);
+                XposedHelpers.setStaticObjectField(android.os.Build.VERSION.class, "SDK_INT", sdk_int);
                 XposedHelpers.setStaticObjectField(android.os.Build.class, "CPU_ABI", "arm64-v8a,armeabi-v7a,armeabi");
 //                Log.d("pre", "handleLoadPackage() returned: " + imei);
             }

@@ -9,7 +9,6 @@ public class PhoneInfo {
     public String make;//xiaomi  厂商
     public String model;//Redmi Note 3   型号
     public String device;//kenzo
-    public String androidVersion;//6.0.1
     public String miuiVersion;//V8.5.5.0.MHOCNED
 
     /**
@@ -20,10 +19,9 @@ public class PhoneInfo {
     public PhoneInfo() {
     }
 
-    public PhoneInfo(String model, String device, String androidVersion, String miuiVersion, String make) {
+    public PhoneInfo(String model, String device, String miuiVersion, String make) {
         this.model = model;
         this.device = device;
-        this.androidVersion = androidVersion;
         this.miuiVersion = miuiVersion;
         this.make = make;
     }
@@ -42,14 +40,6 @@ public class PhoneInfo {
 
     public void setDevice(String device) {
         this.device = device;
-    }
-
-    public String getAndroidVersion() {
-        return androidVersion;
-    }
-
-    public void setAndroidVersion(String androidVersion) {
-        this.androidVersion = androidVersion;
     }
 
     public String getMiuiVersion() {

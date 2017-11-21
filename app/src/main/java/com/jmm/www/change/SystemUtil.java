@@ -436,7 +436,7 @@ public class SystemUtil {
         add(new ScreenInfo("720","1280","2.0"));
     }};
     public static ArrayList<PhoneInfo> phoneInfoList = new ArrayList<PhoneInfo>(){{
-        add(new PhoneInfo("Redmi Note 3","kenzo","6.0.1","V8.5.5.0.MHOCNED","xiaomi"));
+//        add(new PhoneInfo("Redmi Note 3","kenzo","6.0.1","V8.5.5.0.MHOCNED","xiaomi"));
     }};
 
     /**
