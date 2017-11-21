@@ -172,47 +172,228 @@ public class Info {
     /**
      * 手机型号
      *
-     * Xiaomi：
-     *
-     * MI 2S
-     * MI 3
-     * MI 4LTE
-     * Mi-4c
-     * MI 4S
-     * MI 5
-     * MI MAX
-     * MI NOTE LTE
-     * MI NOTE 2
-     * MI NOTE Pro
-     * Redmi Note 3
-     *
-     * HUAWEI：
-     * HUAWEI GRA-UL10
-     * Nexus 6P
-     * HUAWEI CRR-CL00
-     * HUAWEI NXT-AL10
-     * HUAWEIY310-T10
-     * HUAWEI MT7-TL00
-     * HUAWEI CRR-UL00
-     * EVA-AL10
-     * H60-L21
-     * PLK-TL01H
-     * ATH-AL00
-     * HUAWEI TAG-AL00
-     * H60-L01
-     * PE-TL10
-     *
-     * Meizu:
-     * M040
-     * M355
-     * MX4
-     * MX4 Pro
-     * M575M
-     * PRO 6
-     * m1 note
-     * m3
-     * m3 note
-     * m1 metal
+     {
+     "360": {
+     "360手机F4": "1501_M02",
+     "360手机N4": "1509_A00"
+     },
+     "BlackBerry": {
+     "黑莓Priv": "STV100-3"
+     },
+     "HTC": {
+     "HTC One M9": "HTC M9e",
+     "HTC One A9": "HTC One A9",
+     "HTC One X9": "HTC X9u",
+     "HTC One E9+": "HTC E9pw",
+     "HTC One M8": "HTC M8St",
+     "Google Nexus 9": "Nexus 9",
+     "HTC One X": "HTC S720e",
+     "HTC One S": "HTC Z520e",
+     "HTC One V": "HTC T320e",
+     "HTC灵感": "HTC Z710t",
+     "HTC微客": "HTC C510e",
+     "HTC倾心": "HTC S510"
+     },
+     "HUAWEI": {
+     "Google Nexus 6P": "Nexus 6P",
+     "荣耀7i": "ATH-AL00",
+     "Mate S": "HUAWEI CRR-CL00",
+     "P8": "HUAWEI GRA-UL10",
+     "Mate 8": "HUAWEI NXT-AL10",
+     "荣耀7": "PLK-TL01H",
+     "荣耀6至尊版": "H60-L21",
+     "荣耀6 plus": "PE-TL10",
+     "畅享5s": "HUAWEI TAG-AL00",
+     "Y310": "HUAWEIY310-T10",
+     "荣耀畅享5S": "HUAWEI TAG-AL00",
+     "荣耀6": "H60-L01",
+     "华为荣耀6至尊版": "H60-L21",
+     "华为荣耀7": "PLK-TL01H",
+     "华为荣耀7i": "ATH-AL00",
+     "华为 Mate 8": "HUAWEI NXT-AL10",
+     "华为 Mate 7": "HUAWEI MT7-TL00",
+     "华为 Mate S": "HUAWEI CRR-UL00",
+     "华为P9 全网通64G高配": "EVA-AL10"
+     },
+     "Lenovo": {
+     "S8": "Lenovo A7600-m",
+     "A8": "Lenovo A3580",
+     "Note8": "Lenovo A938t",
+     "K3": "Lenovo K30-T",
+     "K3 Note": "Lenovo K50-t3s",
+     "LeMeng3": "Lenovo K32C36",
+     "VIBE Shot": "Lenovo Z90-3"
+     },
+     "LeMobile": {
+     "乐2": "Le X620",
+     "乐2 Pro": "Le X525",
+     "乐Max 2 64G ": "Le X820"
+     },
+     "Letv": {
+     "乐1": "X600",
+     "乐1 Pro": "X800+",
+     "乐1S": "Letv X500",
+     "乐1S 太子妃版": "Letv X501",
+     "乐Max 全网通": "X900+",
+     "乐Max Pro(工程机)": "Letv X910"
+     },
+     "Nokia": {
+     "lumia 930": "RM-1087",
+     "lumia Icon 929": "RM-927",
+     "lumia 920": "RM-867",
+     "lumia 1520": "RM-937",
+     "lumia 1020": "RM-875",
+     "lumia 925": "RM-892",
+     "Nokia X": "Nokia_X"
+     },
+     "OPPO": {
+     "OPPO R7S": "OPPO R7S",
+     "OPPO R7": "OPPO R7",
+     "OPPO R7Plus": "OPPO R7Plus",
+     "OPPO A53": "OPPO A53",
+     "OPPO U3": "6607",
+     "R9 Plus": "R9 Plus",
+     "OPPO Find7": "x9007",
+     "OPPO Find5": "x909t",
+     "OPPO R9": "OPPO R9m"
+     },
+     "Smartisan": {
+     "T1": "SM705",
+     "T2": "SM801",
+     "坚果": "YQ601"
+     },
+     "Sony": {
+     "Xperia Z3": "L55t",
+     "Xperia Z5 Premium": "E6883",
+     "Xperia Z5": "E6683",
+     "Xperia Z3+": "E6533",
+     "Xperia C4": "E5363",
+     "Xperia C5": "E5563",
+     "Xperia M5": "E5663",
+     "Xperia Z5 Compact": "E5823",
+     "Xperia M4 Aqua Dual": "E2363",
+     "Xperia Z3 Dual TD": "D6683",
+     "Xperia M4 Aqua": "E2312",
+     "Sony Z5+": "E6883"
+     },
+     "Xiaomi": {
+     "小米2S": "MI 2S",
+     "小米3": "MI 3",
+     "小米4": "MI 4LTE",
+     "小米4C": "Mi-4c",
+     "小米4S": "MI 4S",
+     "小米5": "MI 5",
+     "小米MAX": "MI MAX",
+     "小米Note": "MI NOTE LTE",
+     "小米Note 2": "MI NOTE 2",
+     "小米Note 顶配版": "MI NOTE Pro",
+     "红米Note3": "Redmi Note 3",
+     "小米平板2": "MI Pad 2"
+     },
+     "vivo": {
+     "vivo X6": "vivo X6D",
+     "vivo X6 Plus": "vivo X6PlusL",
+     "vivo X6S": "vivo X6S",
+     "vivo X6S Plus": "vivo X6SPlus",
+     "vivo Xplay5": "vivo Xplay5A"
+     },
+     "OnePlus": {
+     "一加手机1": "A1001",
+     "一加手机2": "ONE A2001",
+     "一加手机3": "OnePlus A3000",
+     "一加手机X(oneplus x)": "ONE E1001"
+     },
+     "ZTE": {
+     "中兴 AXON 天机 MAX": "ZTE C2016",
+     "中兴 AXON 天机 MINI": "ZTE B2015",
+     "中兴 AXON 天机": "ZTE A2015",
+     "中兴 星星2号": "ZTE G720C",
+     "努比亚Z11 mini全网通": "NX529J",
+     "努比亚大牛 Z9 Max": "NX512J",
+     "努比亚小牛4 Z9 Mini": "NX511J",
+     "努比亚 Z9": "NX508J ",
+     "努比亚 My布拉格": "NX513J ",
+     "努比亚 布拉格S": "NX513J",
+     "ZTE国民指纹机BladeA1": "ZTE C880U",
+     "ZTE国民指纹机BladeA1全网通版 ": "ZTE C880A"
+     },
+     "nubia": {
+     "大牛 Z9 Max": "NX512J",
+     "小牛4 Z9 Mini": "NX511J",
+     "Z9": "NX508J",
+     "My 布拉格": "NX513J",
+     "布拉格S": "NX513J",
+     "nubia Z5S Mini LTE": "NX403A"
+     },
+     "QiKU": {
+     "奇酷（QiKU) 旗舰极客版 铂金": "8692-A00",
+     "大神Note3": "8676-M01",
+     "大神Note3（高配版/全网通）": "8676-A01"
+     },
+     "ZUK": {
+     "ZUK Z2 PRO": "Z2121",
+     "ZUK Z1": "Z1221"
+     },
+     "GiONEE": {
+     "ELIFE S5.5": "GN9000",
+     "金立S8（全网通）": "GN9011",
+     "金立天鉴W909（全网通）": "GiONEE W909"
+     },
+     "GREE": {
+     "格力手机1": "G0111",
+     "格力手机1s": "G0121",
+     "格力手机2": "G0128"
+     },
+     "CMDC": {
+     "中国移动手机M811": "M811",
+     "中国移动手机M812": "M812",
+     "中国移动 N1": "M821",
+     "中国移动 N1 MAX": "M823"
+     },
+     "LGE": {
+     "Google Nexus 5X": "Nexus 5X",
+     "Google Nexus 4": "Nexus 4",
+     "LG G5": "LG-H868",
+     "LG G3港版": "LG-D855"
+     },
+     "Meizu": {
+     "MX2": "M040",
+     "MX3": "M355",
+     "MX4": "MX4",
+     "MX4 Pro": "MX4 Pro",
+     "MX5": "M575M",
+     "PRO 6": "PRO 6",
+     "魅蓝3": "m3",
+     "魅蓝 note": "m1 note",
+     "魅蓝3 note": "m3 note",
+     "魅蓝metal": "m1 metal"
+     },
+     "samsung": {
+     "Galaxy S6 Edge+": "SM-G9280",
+     "Galaxy A9": "SM-A9000",
+     "Galaxy On7": "SM-G6000",
+     "Galaxy A7": "SM-A7100",
+     "Galaxy A5": "SM-A5100",
+     "Galaxy J3": "SM-J3109",
+     "Galaxy Note5": "SM-N9200",
+     "Galaxy On5": "SM-G5500",
+     "领世旗舰Ⅲ": "SM-G9198",
+     "Galaxy J7": "SM-J7008",
+     "Galaxy J5": "SM-J5008",
+     "Galaxy A8": "SM-A8000",
+     "Galaxy S6": "SM-G9208",
+     "W2015": "SM-W2015",
+     "Galaxy S7": "SM-G9300",
+     "Galaxy S7 Edge": "SM-G9350",
+     "W2016 装逼之王": "W2016",
+     "Galaxy note10.1": "SM-T320",
+     "Galaxy Tab": "GT-N8000",
+     "Galaxy Tab S T805C": "SM-T805c",
+     "N5100": "N5100",
+     "Galaxy Tab S": "SM-T800",
+     "GALAXY S6 Active": "SM-G890A"
+     }
+     }
      *
      */
 
@@ -359,7 +540,128 @@ public class Info {
      54:dc:1d:29:ad:a4
      24:AB:81:C2:25:12
      C8:F2:30:57:45:C5
+     */
 
+    /**
+     * imei
+     *
+     860167989935131
+     863004076510187
+     861900488494427
+     861343888708619
+     869858337627047
+     868629828557006
+     865354881472406
+     865480424694501
+     867099558096115
+     860620481636300
+     864028851797361
+     862165454608272
+     864406828707301
+     863286727289887
+     868253660647120
+     866472022683332
+     867896326453662
+     869893028770566
+     863285365583270
+     863270255490919
+     867398746301886
+     869677945038631
+     866290362070476
+     860920540388350
+     864008424978482
+     864123872258160
+     866128863597433
+     863588142414960
+     865306822624107
+     861241966043653
+     861137698099411
+     862495460797409
+     866819516742166
+     865934455621395
+     861157680047632
+     861356522054612
+     861336043980461
+     862388179498692
+     863207244332141
+     860181936147443
+     864842071013783
+     864134685356513
+     865041681664114
+     869900123938210
+     863027747486446
+     869589254722996
+     866071474918525
+     867766724830169
+     865520379029672
+     862914641877641
+     867920378563937
+     869600976005923
+     867268581869885
+     863249399045755
+     866446648441911
+     863883553590683
+     867619554738228
+     864772686123703
+     860721766626998
+     863052352814229
+     861153058900577
+     864894743249741
+     867272193044473
+     866918343901845
+     861082378312439
+     860378687358399
+     865658745858075
+     864310379026253
+     869090724667879
+     869290140393973
+     863121371978412
+     865743295013584
+     864212196973784
+     866822499041663
+     864269510608819
+     860963559877764
+     861842251007152
+     865586610224810
+     865379481198002
+     867112946912438
+     869402258246824
+     869524732061550
+     869167066588226
+     865707974978698
+     860632757728695
+     865956114757690
+     865506028916765
+     861343289595219
+     866099519368786
+     869061278669520
+     863146526573958
+     861517581314540
+     868411386568133
+     867824267716129
+     866543368133387
+     861716089172737
+     861459393814179
+     862062066966455
+     862450767751542
+     868986321790629
+     */
 
+    /**
+     * android_id
+     *
+     * 6vvep6t5r1oeumh
+     * kzymu31btitkzoi
+     * hfzncobmmriaa7g
+     * vmlnxegk0l0492m
+     * y0801s7iejcig7l
+     * n7umiwui42o03q2
+     * 8k2x3z5ocn11mbb
+     * 2qxx3mj6qq7zfl9
+     *
+     *
+     *
+     *
+     *
      */
 }
