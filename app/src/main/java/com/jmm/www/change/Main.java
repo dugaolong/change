@@ -20,6 +20,21 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class Main implements IXposedHookLoadPackage {
 
     public static String meth;
+    public String screenWidth;//1080
+    public String screenHeight;//1920
+    public String screenDensity;//3.0
+    public String model;//Redmi Note 3   型号
+    public String device;//kenzo
+    public String androidVersion;//6.0.1
+    public String miuiVersion;//V8.5.5.0.MHOCNED
+    public String make;//xiaomi  厂商
+    public String imei;//da6fc986c0ecbb4530f746c5c6d22d36
+    public String mac;//A35C496B735A30C69F880E179F1BC457
+    public String language;//zh
+    public String country;//CN
+    public String connectionType;//wifi
+    public String ip;//192.168.170.12
+    public String androidId;//d1b32108050901eb
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws Throwable {
@@ -30,10 +45,25 @@ public class Main implements IXposedHookLoadPackage {
                     || lpp.packageName.equals("com.gtr.system.information.activity")) {
                 //获得Sharedpreference保存的数据
                 XSharedPreferences pre = new XSharedPreferences(this.getClass().getPackage().getName(), "prefs");
-                String imei = pre.getString("imei", "860847420878608");
-                HookMethod(TelephonyManager.class, "getDeviceId", imei, lpp);
-                HookMethodNetworkCountryIso(TelephonyManager.class, "getNetworkCountryIso", imei, lpp);
-                HookMethodCountry(Locale.class, "getCountry", imei, lpp);
+                imei = pre.getString("imei", "860847420878608");
+                screenWidth = pre.getString("screenWidth", "1080");
+                screenHeight = pre.getString("screenHeight", "1920");
+                screenDensity = pre.getString("screenDensity", "3.0");
+                model = pre.getString("model", "Redmi Note 3");
+                device = pre.getString("device", "kenzo");
+                androidVersion = pre.getString("androidVersion", "6.0.1");
+                miuiVersion = pre.getString("miuiVersion", "V8.5.5.0.MHOCNED");
+                make = pre.getString("make", "xiaomi");
+                mac = pre.getString("mac", "00:24:7C:2C:A9:79");
+                language = pre.getString("language", "zh");
+                country = pre.getString("country", "CN");
+                connectionType = pre.getString("connectionType", "1");
+                ip = pre.getString("ip", "192.168.170.18");
+                androidId = pre.getString("androidId", "d1b32100050901eb");
+
+                HookMethod(TelephonyManager.class, "getDeviceId", lpp);
+                HookMethodNetworkCountryIso(TelephonyManager.class, "getNetworkCountryIso", lpp);
+                HookMethodCountry(Locale.class, "getCountry", lpp);
                 HookMethodSettings("android.provider.Settings.Secure", "getString", lpp);
 //                HookMethodDisplayWidth("android.view.Display", "getWidth", lpp);
 //                HookMethodDisplayHeight("android.view.Display", "getHeight", lpp);
@@ -45,13 +75,13 @@ public class Main implements IXposedHookLoadPackage {
                 HookMethodSimCountryIso("android.telephony.TelephonyManager", "getSimCountryIso", lpp);
                 HookMethodConnectionType("android.net.NetworkInfo", "getType", lpp);
 
-                XposedHelpers.setStaticObjectField(android.os.Build.class, "HARDWARE", "qcom");//设备硬件名称
-                XposedHelpers.setStaticObjectField(android.os.Build.class, "MANUFACTURER", "Xiaomi");//设备制造商
-                XposedHelpers.setStaticObjectField(android.os.Build.class, "BRAND", "Xiaomi");
-                XposedHelpers.setStaticObjectField(android.os.Build.class, "DEVICE", "kenzo");
-                XposedHelpers.setStaticObjectField(android.os.Build.class, "MODEL", "MI 2S");//设备型号
-                XposedHelpers.setStaticObjectField(android.os.Build.VERSION.class, "INCREMENTAL", "V8.2");
-                XposedHelpers.setStaticObjectField(android.os.Build.VERSION.class, "RELEASE", "5.0.2LRX22G");
+//                XposedHelpers.setStaticObjectField(android.os.Build.class, "HARDWARE", "qcom");//设备硬件名称
+                XposedHelpers.setStaticObjectField(android.os.Build.class, "MANUFACTURER", make);//设备制造商
+                XposedHelpers.setStaticObjectField(android.os.Build.class, "BRAND", make);
+                XposedHelpers.setStaticObjectField(android.os.Build.class, "DEVICE", device);
+                XposedHelpers.setStaticObjectField(android.os.Build.class, "MODEL", model);//设备型号
+                XposedHelpers.setStaticObjectField(android.os.Build.VERSION.class, "INCREMENTAL", miuiVersion);
+                XposedHelpers.setStaticObjectField(android.os.Build.VERSION.class, "RELEASE",androidVersion);
                 XposedHelpers.setStaticObjectField(android.os.Build.class, "CPU_ABI", "arm64-v8a,armeabi-v7a,armeabi");
 //                Log.d("pre", "handleLoadPackage() returned: " + imei);
             }
@@ -60,7 +90,7 @@ public class Main implements IXposedHookLoadPackage {
         }
     }
 
-    private void HookMethod(final Class cl, final String method, final String result, final XC_LoadPackage.LoadPackageParam lpp) {
+    private void HookMethod(final Class cl, final String method, final XC_LoadPackage.LoadPackageParam lpp) {
         try {
 
             XposedHelpers.findAndHookMethod(cl, method, new Object[]{new XC_MethodHook() {
@@ -70,10 +100,10 @@ public class Main implements IXposedHookLoadPackage {
 
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     if (method.equals("getDeviceId")) {
-                        param.setResult("860847420878608");
+                        param.setResult(imei);
                     }
                     if (method.equals("getLanguage")) {
-                        param.setResult("zh");
+                        param.setResult(language);
                     }
                     XposedBridge.log("此方法返回的结果: " + param.getResult());
                 }
@@ -82,7 +112,7 @@ public class Main implements IXposedHookLoadPackage {
             e.printStackTrace();
         }
     }
-    private void HookMethodNetworkCountryIso(final Class cl, final String method, final String result, final XC_LoadPackage.LoadPackageParam lpp) {
+    private void HookMethodNetworkCountryIso(final Class cl, final String method , final XC_LoadPackage.LoadPackageParam lpp) {
         try {
 
             XposedHelpers.findAndHookMethod(cl, method, new Object[]{new XC_MethodHook() {
@@ -91,7 +121,7 @@ public class Main implements IXposedHookLoadPackage {
                 }
 
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    param.setResult("CN");
+                    param.setResult(country);
                     XposedBridge.log("NetworkCountryIso的结果: " + param.getResult());
                 }
             }});
@@ -99,7 +129,7 @@ public class Main implements IXposedHookLoadPackage {
             e.printStackTrace();
         }
     }
-    private void HookMethodCountry(final Class cl, final String method, final String result, final XC_LoadPackage.LoadPackageParam lpp) {
+    private void HookMethodCountry(final Class cl, final String method, final XC_LoadPackage.LoadPackageParam lpp) {
         try {
 
             XposedHelpers.findAndHookMethod(cl, method, new Object[]{new XC_MethodHook() {
@@ -109,7 +139,7 @@ public class Main implements IXposedHookLoadPackage {
 
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     XposedBridge.log("HookMethodCountry的结果: " + param.getResult());
-                    param.setResult("CN");
+                    param.setResult(country);
                     XposedBridge.log("HookMethodCountry的结果: " + param.getResult());
                 }
             }});
@@ -132,7 +162,7 @@ public class Main implements IXposedHookLoadPackage {
 
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     if (meth.equals("android_id")) {
-                        param.setResult("d6c4079d52554c09");
+                        param.setResult(androidId);
                     }
                     meth = "";
                     XposedBridge.log("此方法返回的结果: " + param.getResult());
@@ -187,9 +217,9 @@ public class Main implements IXposedHookLoadPackage {
 
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     DisplayMetrics dm = new DisplayMetrics();
-                    dm.heightPixels = 1920;
-                    dm.widthPixels = 1080;
-                    dm.density = 3.0f;
+                    dm.heightPixels = Integer.parseInt(screenHeight) ;
+                    dm.widthPixels = Integer.parseInt(screenWidth);
+                    dm.density = Float.parseFloat(screenWidth);
                     param.setResult((DisplayMetrics) dm);
 //                    param.args[0]=1920;
 //                    XposedBridge.log("此方法返回的结果: " + param.getResult());
@@ -225,7 +255,7 @@ public class Main implements IXposedHookLoadPackage {
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 }
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    param.setResult("00:24:7C:2C:A9:75");
+                    param.setResult(mac);
                 }
             });
         } catch (Throwable e) {
@@ -258,7 +288,7 @@ public class Main implements IXposedHookLoadPackage {
                 }
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     XposedBridge.log("Enumeration.ipAddress string:192.168.0.21");
-                    param.setResult("192.168.0.21");
+                    param.setResult(ip);
                 }
             });
         } catch (Throwable e) {
@@ -273,7 +303,7 @@ public class Main implements IXposedHookLoadPackage {
                 }
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     XposedBridge.log("SimCountryIso:"+param.getResult());
-                    param.setResult("CN");
+                    param.setResult(country);
                 }
             });
         } catch (Throwable e) {
@@ -287,7 +317,7 @@ public class Main implements IXposedHookLoadPackage {
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 }
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    param.setResult((Integer)1);
+                    param.setResult(Integer.parseInt(connectionType));
                 }
             });
         } catch (Throwable e) {

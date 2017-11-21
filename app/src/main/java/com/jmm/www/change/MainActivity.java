@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         ((TextView) findViewById(R.id.info)).setText(getDeviceInfo() + getSystemInfo());
+        System.out.println(getDeviceInfo() + getSystemInfo());
         this.printDeviceHardwareInfo();
         this.printScreen();
     }
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         sb.append("TIME: " + Build.TIME + "\n");
         sb.append("builder类型：" + Build.TYPE + "\n");
         sb.append("USER: " + Build.USER + "\n");
+        sb.append("FINGERPRINT: " + Build.FINGERPRINT + "\n");
         return sb.toString();
     }
 
