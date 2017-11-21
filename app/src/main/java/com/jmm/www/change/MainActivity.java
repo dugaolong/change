@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -20,7 +21,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Enumeration;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         sb.append("系统定制商：" + Build.BRAND + "\n");
         sb.append("cpu指令集： " + Build.CPU_ABI + "\n");
         sb.append("cpu指令集2 " + Build.CPU_ABI2 + "\n");
-        sb.append("设置参数： " + Build.DEVICE + "\n");
+        sb.append("设备参数： " + Build.DEVICE + "\n");
         sb.append("显示屏参数：" + Build.DISPLAY + "\n");
         sb.append("无线电固件版本：" + Build.getRadioVersion() + "\n");
         sb.append("硬件识别码：" + Build.FINGERPRINT + "\n");
@@ -195,12 +201,57 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("IpAddress :" + ipip);//35104960--到--51882176
         NetworkInfo networkInfo = ((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
         System.out.println("networkType :" + networkInfo.getType());//范围1-17
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();)
+            {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();)
+                {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress())
+                    {
+                        System.out.println("Enumeration.IpAddress:" +  inetAddress.getHostAddress());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        TelephonyManager tm = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        System.out.println("CountryID--->>>" + Locale.getDefault().getCountry());
+        System.out.println("Language()--->>>" + Locale.getDefault().getLanguage());
+        System.out.println("NetworkCountryIso--->>>" + tm.getNetworkCountryIso());
+        System.out.println("SimCountryIso--->>>" + tm.getSimCountryIso());
+        System.out.println("SubscriberId--->>>" + tm.getSubscriberId());
+        System.out.println("CPU_ABI--->>>" + android.os.Build.CPU_ABI);
+//        getDeviceInfo2();
+
     }
 
     private String intToIp(int i) {
 //        return (i & 0xFF ) + "." + ((i >> 8 ) & 0xFF) + "." + ((i >> 16 ) & 0xFF) + "." + ( i >> 24 & 0xFF) ;
         return (i >> 24 & 0xFF) + "." + ((i >> 16 ) & 0xFF) + "." +
                 ((i >> 8 ) & 0xFF) + "." +  (i & 0xFF ) ;
-
     }
+
+    /**
+     * 通过反射获取所有的字段信息
+     * @return
+     */
+    public String getDeviceInfo2(){
+        StringBuilder sbBuilder = new StringBuilder();
+        Field[] fields = Build.class.getDeclaredFields();
+        for(Field field:fields){
+            field.setAccessible(true);
+            try {
+                System.out.println("--->>"+field.getName()+":"+field.get(null).toString());
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return sbBuilder.toString();
+    }
+
 }
