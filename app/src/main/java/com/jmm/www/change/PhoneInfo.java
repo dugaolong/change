@@ -9,11 +9,21 @@ public class PhoneInfo {
     public String make;//xiaomi  厂商
     public String model;//Redmi Note 3   型号
     public String device;//kenzo
-    public String miuiVersion;//V8.5.5.0.MHOCNED
+    public String miuiVersion;//版本增量）
 
     /**
      * 如果是 xiaomi   Build.VERSION.INCREMENTAL: V8.5.5.0.MHOCNED
      * oppo miuiVersion是 Build.VERSION.INCREMENTAL: eng.root.20160130.230736
+     *
+     * eng.buildbot.20111124.040059
+     * eng.buildbot.20110619.060228
+     * 47975B3A
+     * V1.11
+     * 2.2.1
+     * 7.6.15  小米5
+     * JLB21.0   mi2
+     * 2.5.18    MI-ONE Plus
+
      */
 
     public PhoneInfo() {

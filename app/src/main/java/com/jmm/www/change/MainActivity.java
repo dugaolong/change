@@ -18,7 +18,6 @@ import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Field;
@@ -68,35 +67,72 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ((TextView) findViewById(R.id.info)).setText(getDeviceInfo() + getSystemInfo());
-        System.out.println(getDeviceInfo() + getSystemInfo());
-        this.printDeviceHardwareInfo();
-        this.printScreen();
+//        ((TextView) findViewById(R.id.info)).setText(getDeviceInfo() + getSystemInfo());
+//        System.out.println(getDeviceInfo() + getSystemInfo());
+//        this.printDeviceHardwareInfo();
+//        this.printScreen();
+
+        for (int i = 0; i < 100; i++) {
+
+//            SystemUtil.screenInfoList.get(i).getScreenWidth();
+//            SystemUtil.screenInfoList.get(i).getScreenHeight();
+//            SystemUtil.screenInfoList.get(i).getScreenDensity();
+//            SystemUtil.phoneInfoList.get(i).getModel();
+//            SystemUtil.phoneInfoList.get(i).getDevice();
+//            SystemUtil.versionList.get(i).getVersion();
+//            SystemUtil.phoneInfoList.get(i).getMiuiVersion();
+//            SystemUtil.phoneInfoList.get(i).getMake();
+//            SystemUtil.imeiList.get(i);
+//            SystemUtil.macList.get(i);
+//            SystemUtil.ipList.get(i);
+//            SystemUtil.androididList.get(i);
+//            SystemUtil.versionList.get(i).getSdkInt();
+            System.out.println("add(new Info(\""+SystemUtil.screenInfoList.get(i).getScreenWidth()+"\"," +
+                    "\""+SystemUtil.screenInfoList.get(i).getScreenHeight()+"\"," +
+                    "\""+SystemUtil.screenInfoList.get(i).getScreenDensity()+"\"," +
+                    "\""+SystemUtil.phoneInfoList.get(i).getModel()+"\"," +
+                    "\""+SystemUtil.phoneInfoList.get(i).getDevice()+"\"," +
+                    "\""+SystemUtil.versionList.get(i).getVersion()+"\"," +
+                    "\""+SystemUtil.phoneInfoList.get(i).getMiuiVersion()+"\"," +
+                    "\""+SystemUtil.phoneInfoList.get(i).getMake()+"\"," +
+                    "\""+SystemUtil.imeiList.get(i)+"\"," +
+                    "\""+SystemUtil.macList.get(i)+"\"," +
+                    "\"zh\"," +
+                    "\"CN\"," +
+                    "\"1\"," +
+                    "\""+SystemUtil.ipList.get(i)+"\"," +
+                    "\""+SystemUtil.androididList.get(i)+"\"," +
+                    "\""+SystemUtil.versionList.get(i).getSdkInt()+"\"));");
+//            System.out.println("add(new Info(\"1080\",\"1920\",\"3.0\",\"MI 2S\",\"kenzo\",\"5.0.2LRX22G\",\"V8.2\",\"xiaomi\",
+// \"860847420878608\",\"00:24:7C:2C:A9:75\",\"zh\",\"CN\",\"1\",\"192.168.0.21\",\"d1b32108050901eb\",\"19\"));");
+        }
+
     }
 
     public static String getDeviceInfo() {
         StringBuffer sb = new StringBuffer();
-        sb.append("主板： " + Build.BOARD + "\n");
-        sb.append("系统启动程序版本号： " + Build.BOOTLOADER + "\n");
-        sb.append("系统定制商：" + Build.BRAND + "\n");
-        sb.append("cpu指令集： " + Build.CPU_ABI + "\n");
-        sb.append("cpu指令集2 " + Build.CPU_ABI2 + "\n");
-        sb.append("设备参数： " + Build.DEVICE + "\n");
-        sb.append("显示屏参数：" + Build.DISPLAY + "\n");
+        sb.append("主板BOARD： " + Build.BOARD + "\n");
+        sb.append("系统启动程序版本号BOOTLOADER： " + Build.BOOTLOADER + "\n");
+        sb.append("系统定制商BRAND：" + Build.BRAND + "\n");
+        sb.append("cpu指令集CPU_ABI： " + Build.CPU_ABI + "\n");
+        sb.append("cpu指令集2CPU_ABI2 " + Build.CPU_ABI2 + "\n");
+        sb.append("设备参数DEVICE： " + Build.DEVICE + "\n");
+        sb.append("显示屏参数DISPLAY：" + Build.DISPLAY + "\n");
         sb.append("无线电固件版本：" + Build.getRadioVersion() + "\n");
-        sb.append("硬件识别码：" + Build.FINGERPRINT + "\n");
-        sb.append("硬件名称：" + Build.HARDWARE + "\n");
+        sb.append("硬件识别码FINGERPRINT：" + Build.FINGERPRINT + "\n");
+        sb.append("硬件名称HARDWARE：" + Build.HARDWARE + "\n");
         sb.append("HOST: " + Build.HOST + "\n");
-        sb.append("修订版本列表：" + Build.ID + "\n");
-        sb.append("硬件制造商：" + Build.MANUFACTURER + "\n");
-        sb.append("版本：" + Build.MODEL + "\n");
-        sb.append("硬件序列号：" + Build.SERIAL + "\n");
-        sb.append("手机制造商：" + Build.PRODUCT + "\n");
-        sb.append("描述Build的标签：" + Build.TAGS + "\n");
+        sb.append("修订版本列表ID：" + Build.ID + "\n");
+        sb.append("硬件制造商MANUFACTURER：" + Build.MANUFACTURER + "\n");
+        sb.append("版本MODEL：" + Build.MODEL + "\n");
+        sb.append("硬件序列号SERIAL：" + Build.SERIAL + "\n");
+        sb.append("手机制造商PRODUCT：" + Build.PRODUCT + "\n");
+        sb.append("描述Build的标签TAGS：" + Build.TAGS + "\n");
         sb.append("TIME: " + Build.TIME + "\n");
-        sb.append("builder类型：" + Build.TYPE + "\n");
+        sb.append("builder类型TYPE：" + Build.TYPE + "\n");
         sb.append("USER: " + Build.USER + "\n");
         sb.append("FINGERPRINT: " + Build.FINGERPRINT + "\n");
+        sb.append("Build.VERSION.INCREMENTAL: " + Build.VERSION.INCREMENTAL+ "\n");
         return sb.toString();
     }
 
@@ -203,6 +239,8 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("IpAddress :" + ipip);//35104960--到--51882176
         NetworkInfo networkInfo = ((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
         System.out.println("networkType :" + networkInfo.getType());//范围1-17
+//        ConnectivityManager.TYPE_WIFI;
+//        TelephonyManager.NETWORK_TYPE_LTE;
         try {
             for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();)
             {
