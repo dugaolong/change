@@ -13,8 +13,6 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
-import static android.os.Build.VERSION.SDK_INT;
-
 /**
  * Created by dugaolong on 17/11/17.
  */
@@ -48,22 +46,38 @@ public class Main implements IXposedHookLoadPackage {
                     || lpp.packageName.equals("com.gtr.system.information.activity")) {
                 //获得Sharedpreference保存的数据
                 XSharedPreferences pre = new XSharedPreferences(this.getClass().getPackage().getName(), "prefs");
-                imei = pre.getString("imei", "860847420878608");
-                screenWidth = pre.getString("screenWidth", "1080");
-                screenHeight = pre.getString("screenHeight", "1920");
-                screenDensity = pre.getString("screenDensity", "3.0");
-                model = pre.getString("model", "Redmi Note 3");
-                device = pre.getString("device", "kenzo");
-                androidVersion = pre.getString("androidVersion", "6.0.1");
-                miuiVersion = pre.getString("miuiVersion", "V8.5.5.0.MHOCNED");
-                make = pre.getString("make", "xiaomi");
-                mac = pre.getString("mac", "00:24:7C:2C:A9:79");
-                language = pre.getString("language", "zh");
-                country = pre.getString("country", "CN");
-                connectionType = pre.getString("connectionType", "1");
-                ip = pre.getString("ip", "192.168.170.18");
-                androidId = pre.getString("androidId", "d1b32100050901eb");
-                sdk_int = pre.getString("sdk_int", "19");
+                imei = pre.getString("imei", "");
+                screenWidth = pre.getString("screenWidth", "");
+                screenHeight = pre.getString("screenHeight", "");
+                screenDensity = pre.getString("screenDensity", "");
+                model = pre.getString("model", "");
+                device = pre.getString("device", "");
+                androidVersion = pre.getString("androidVersion", "");
+                miuiVersion = pre.getString("miuiVersion", "");
+                make = pre.getString("make", "");
+                mac = pre.getString("mac", "");
+                language = pre.getString("language", "");
+                country = pre.getString("country", "");
+                connectionType = pre.getString("connectionType", "");
+                ip = pre.getString("ip", "");
+                androidId = pre.getString("androidId", "");
+                sdk_int = pre.getString("sdk_int", "");
+                XposedBridge.log("info: " +"\n" + imei
+                        +"\n" + screenWidth
+                        +"\n" + screenHeight
+                        +"\n" + screenDensity
+                        +"\n" + model
+                        +"\n" + device
+                        +"\n" + androidVersion
+                        +"\n" + miuiVersion
+                        +"\n" + make
+                        +"\n" + mac
+                        +"\n" + language
+                        +"\n" + country
+                        +"\n" + connectionType
+                        +"\n" + ip
+                        +"\n" + androidId
+                        +"\n" + sdk_int);
 
                 HookMethod(TelephonyManager.class, "getDeviceId", lpp);
                 HookMethodNetworkCountryIso(TelephonyManager.class, "getNetworkCountryIso", lpp);
@@ -224,7 +238,7 @@ public class Main implements IXposedHookLoadPackage {
                     DisplayMetrics dm = new DisplayMetrics();
                     dm.heightPixels = Integer.parseInt(screenHeight) ;
                     dm.widthPixels = Integer.parseInt(screenWidth);
-                    dm.density = Float.parseFloat(screenWidth);
+                    dm.density = Float.parseFloat(screenDensity);
                     param.setResult((DisplayMetrics) dm);
 //                    param.args[0]=1920;
 //                    XposedBridge.log("此方法返回的结果: " + param.getResult());
@@ -260,6 +274,7 @@ public class Main implements IXposedHookLoadPackage {
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 }
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    XposedBridge.log("mac:"+param.getResult());
                     param.setResult(mac);
                 }
             });
@@ -274,11 +289,8 @@ public class Main implements IXposedHookLoadPackage {
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 }
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    //35104960=193.168.23.2
-                    //51882176=192.168.23.3
-                    XposedBridge.log("ipAddress string:192.168.100.203");
-                    XposedBridge.log("ipAddress int:"+ipToInt("192.168.100.203"));
-                    param.setResult(ipToInt("192.168.100.203"));
+                    XposedBridge.log("ip:"+param.getResult());
+                    param.setResult(ipToInt(ip));
                 }
             });
         } catch (Throwable e) {
@@ -292,7 +304,7 @@ public class Main implements IXposedHookLoadPackage {
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 }
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    XposedBridge.log("Enumeration.ipAddress string:192.168.0.21");
+                    XposedBridge.log("ip:"+param.getResult());
                     param.setResult(ip);
                 }
             });
@@ -322,6 +334,7 @@ public class Main implements IXposedHookLoadPackage {
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 }
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    XposedBridge.log("connectionType:"+param.getResult());
                     param.setResult(Integer.parseInt(connectionType));
                 }
             });

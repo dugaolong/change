@@ -17,7 +17,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Field;
@@ -26,20 +26,21 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
 import java.util.Locale;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     public static final int REQUESTCODE_READ_PHONE_STATE = 1;
 
-    private EditText imeitx;
+//    private EditText imeitx;
     private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imeitx = ((EditText) findViewById(R.id.input));
+//        imeitx = ((EditText) findViewById(R.id.input));
         button = ((Button) findViewById(R.id.button));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,12 +54,30 @@ public class MainActivity extends AppCompatActivity {
      * 使用Sharedpreferences保存数据
      */
     private void saveData() {
+        Info info = SystemUtil.infoList.get(new Random().nextInt(100));
         try {
             SharedPreferences sh = this.getSharedPreferences("prefs", Context.MODE_WORLD_READABLE);
             SharedPreferences.Editor pre = sh.edit();
-            pre.putString("imei", imeitx.getText().toString());
+
+            pre.putString("imei", info.getImei());
+            pre.putString("screenWidth", info.getScreenWidth());
+            pre.putString("screenHeight", info.getScreenHeight());
+            pre.putString("screenDensity", info.getScreenDensity());
+            pre.putString("model", info.getModel());
+            pre.putString("device", info.getDevice());
+            pre.putString("androidVersion", info.getAndroidVersion());
+            pre.putString("miuiVersion", info.getMiuiVersion());
+            pre.putString("make", info.getMake());
+            pre.putString("mac", info.getMac());
+            pre.putString("language", info.getLanguage());
+            pre.putString("country", info.getCountry());
+            pre.putString("connectionType", info.getConnectionType());
+            pre.putString("ip", info.getIp());
+            pre.putString("androidId", info.getAndroidId());
+            pre.putString("sdk_int", info.getSdk_int());
             pre.apply();
             Toast.makeText(MainActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+            ((TextView) findViewById(R.id.info)).setText(getChangedInfo());
         } catch (Throwable e) {
             e.printStackTrace();
         }
@@ -68,47 +87,74 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 //        ((TextView) findViewById(R.id.info)).setText(getDeviceInfo() + getSystemInfo());
+        ((TextView) findViewById(R.id.info)).setText(getChangedInfo());
 //        System.out.println(getDeviceInfo() + getSystemInfo());
 //        this.printDeviceHardwareInfo();
 //        this.printScreen();
 
-        for (int i = 0; i < 100; i++) {
-
-//            SystemUtil.screenInfoList.get(i).getScreenWidth();
-//            SystemUtil.screenInfoList.get(i).getScreenHeight();
-//            SystemUtil.screenInfoList.get(i).getScreenDensity();
-//            SystemUtil.phoneInfoList.get(i).getModel();
-//            SystemUtil.phoneInfoList.get(i).getDevice();
-//            SystemUtil.versionList.get(i).getVersion();
-//            SystemUtil.phoneInfoList.get(i).getMiuiVersion();
-//            SystemUtil.phoneInfoList.get(i).getMake();
-//            SystemUtil.imeiList.get(i);
-//            SystemUtil.macList.get(i);
-//            SystemUtil.ipList.get(i);
-//            SystemUtil.androididList.get(i);
-//            SystemUtil.versionList.get(i).getSdkInt();
-            System.out.println("add(new Info(\""+SystemUtil.screenInfoList.get(i).getScreenWidth()+"\"," +
-                    "\""+SystemUtil.screenInfoList.get(i).getScreenHeight()+"\"," +
-                    "\""+SystemUtil.screenInfoList.get(i).getScreenDensity()+"\"," +
-                    "\""+SystemUtil.phoneInfoList.get(i).getModel()+"\"," +
-                    "\""+SystemUtil.phoneInfoList.get(i).getDevice()+"\"," +
-                    "\""+SystemUtil.versionList.get(i).getVersion()+"\"," +
-                    "\""+SystemUtil.phoneInfoList.get(i).getMiuiVersion()+"\"," +
-                    "\""+SystemUtil.phoneInfoList.get(i).getMake()+"\"," +
-                    "\""+SystemUtil.imeiList.get(i)+"\"," +
-                    "\""+SystemUtil.macList.get(i)+"\"," +
-                    "\"zh\"," +
-                    "\"CN\"," +
-                    "\"1\"," +
-                    "\""+SystemUtil.ipList.get(i)+"\"," +
-                    "\""+SystemUtil.androididList.get(i)+"\"," +
-                    "\""+SystemUtil.versionList.get(i).getSdkInt()+"\"));");
-//            System.out.println("add(new Info(\"1080\",\"1920\",\"3.0\",\"MI 2S\",\"kenzo\",\"5.0.2LRX22G\",\"V8.2\",\"xiaomi\",
-// \"860847420878608\",\"00:24:7C:2C:A9:75\",\"zh\",\"CN\",\"1\",\"192.168.0.21\",\"d1b32108050901eb\",\"19\"));");
-        }
+//        for (int i = 0; i < 100; i++) {
+//
+////            SystemUtil.screenInfoList.get(i).getScreenWidth();
+////            SystemUtil.screenInfoList.get(i).getScreenHeight();
+////            SystemUtil.screenInfoList.get(i).getScreenDensity();
+////            SystemUtil.phoneInfoList.get(i).getModel();
+////            SystemUtil.phoneInfoList.get(i).getDevice();
+////            SystemUtil.versionList.get(i).getVersion();
+////            SystemUtil.phoneInfoList.get(i).getMiuiVersion();
+////            SystemUtil.phoneInfoList.get(i).getMake();
+////            SystemUtil.imeiList.get(i);
+////            SystemUtil.macList.get(i);
+////            SystemUtil.ipList.get(i);
+////            SystemUtil.androididList.get(i);
+////            SystemUtil.versionList.get(i).getSdkInt();
+//            System.out.println("add(new Info(\""+SystemUtil.screenInfoList.get(i).getScreenWidth()+"\"," +
+//                    "\""+SystemUtil.screenInfoList.get(i).getScreenHeight()+"\"," +
+//                    "\""+SystemUtil.screenInfoList.get(i).getScreenDensity()+"\"," +
+//                    "\""+SystemUtil.phoneInfoList.get(i).getModel()+"\"," +
+//                    "\""+SystemUtil.phoneInfoList.get(i).getDevice()+"\"," +
+//                    "\""+SystemUtil.versionList.get(i).getVersion()+"\"," +
+//                    "\""+SystemUtil.phoneInfoList.get(i).getMiuiVersion()+"\"," +
+//                    "\""+SystemUtil.phoneInfoList.get(i).getMake()+"\"," +
+//                    "\""+SystemUtil.imeiList.get(i)+"\"," +
+//                    "\""+SystemUtil.macList.get(i)+"\"," +
+//                    "\"zh\"," +
+//                    "\"CN\"," +
+//                    "\"1\"," +
+//                    "\""+SystemUtil.ipList.get(i)+"\"," +
+//                    "\""+SystemUtil.androididList.get(i)+"\"," +
+//                    "\""+SystemUtil.versionList.get(i).getSdkInt()+"\"));");
+////            System.out.println("add(new Info(\"1080\",\"1920\",\"3.0\",\"MI 2S\",\"kenzo\",\"5.0.2LRX22G\",\"V8.2\",\"xiaomi\",
+//// \"860847420878608\",\"00:24:7C:2C:A9:75\",\"zh\",\"CN\",\"1\",\"192.168.0.21\",\"d1b32108050901eb\",\"19\"));");
+//        }
 
     }
 
+    private String getChangedInfo() {
+        StringBuffer sb = new StringBuffer();
+        // 通过Resources获取
+        DisplayMetrics dm2 = getResources().getDisplayMetrics();
+        sb.append("heigth : " + dm2.heightPixels+ "\n");
+        sb.append("width : " + dm2.widthPixels+ "\n");
+        sb.append("density : " + dm2.density+ "\n");
+        sb.append("版本MODEL：" + Build.MODEL + "\n");
+        sb.append("设备参数DEVICE： " + Build.DEVICE + "\n");
+        sb.append("Build.VERSION.RELEASE:androidVersion: " + Build.VERSION.RELEASE+ "\n");
+        sb.append("Build.VERSION.INCREMENTAL:miuiVersion: " + Build.VERSION.INCREMENTAL+ "\n");
+        sb.append("硬件制造商MANUFACTURER：make:" + Build.MANUFACTURER + "\n");
+        sb.append("imei： " + SystemUtil.getIMEI(this) + "\n");
+        WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        WifiInfo info = wifi.getConnectionInfo();
+        sb.append("MacAddress： " + info.getMacAddress() + "\n");
+        sb.append("SystemLanguage： " + SystemUtil.getSystemLanguage() + "\n");
+        TelephonyManager tm = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        sb.append("NetworkCountryIso：" + tm.getNetworkCountryIso()+ "\n");
+        NetworkInfo networkInfo = ((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+        sb.append("connectionType :" + networkInfo.getType()+ "\n");//范围1-17
+        sb.append("IpAddress :" + info.getIpAddress()+ "\n");
+        sb.append("Build.androidId: " + Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)+ "\n");
+        sb.append("Build.VERSION.SDK_INT: " + Build.VERSION.SDK_INT);
+        return sb.toString();
+    }
     public static String getDeviceInfo() {
         StringBuffer sb = new StringBuffer();
         sb.append("主板BOARD： " + Build.BOARD + "\n");
