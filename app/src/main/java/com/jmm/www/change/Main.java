@@ -40,44 +40,53 @@ public class Main implements IXposedHookLoadPackage {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws Throwable {
         try {
+
             final XC_LoadPackage.LoadPackageParam lpp = loadPackageParam;
             XposedBridge.log("packageName: " + lpp.processName);
+            //获得Sharedpreference保存的数据
+            XSharedPreferences pre = new XSharedPreferences(this.getClass().getPackage().getName(), "prefs");
+            mac = pre.getString("mac", "b4:0b:44:31:60:5c");
+            HookMethodMacAddress("android.net.wifi.WifiInfo", "getMacAddress", lpp);
+            HookMethodexec("java.io.LineNumberReader", "readLine", lpp);
+            HookMethodexecBR("java.io.BufferedReader", "readLine", lpp);
+            HookMethodexec2("java.lang.String", "toUpperCase", lpp);
+            HookMethodexecHardwareAddress("java.net.NetworkInterface", "getHardwareAddress", lpp);
+
             if (lpp.packageName.equals("com.jmm.www.calendar") || lpp.packageName.equals("com.jmm.www.change")
                     || lpp.packageName.equals("com.gtr.system.information.activity")) {
-                //获得Sharedpreference保存的数据
-                XSharedPreferences pre = new XSharedPreferences(this.getClass().getPackage().getName(), "prefs");
-                imei = pre.getString("imei", "");
-                screenWidth = pre.getString("screenWidth", "");
-                screenHeight = pre.getString("screenHeight", "");
-                screenDensity = pre.getString("screenDensity", "");
-                model = pre.getString("model", "");
-                device = pre.getString("device", "");
-                androidVersion = pre.getString("androidVersion", "");
-                miuiVersion = pre.getString("miuiVersion", "");
-                make = pre.getString("make", "");
-                mac = pre.getString("mac", "");
-                language = pre.getString("language", "");
-                country = pre.getString("country", "");
-                connectionType = pre.getString("connectionType", "");
-                ip = pre.getString("ip", "");
-                androidId = pre.getString("androidId", "");
-                sdk_int = pre.getString("sdk_int", "");
-                XposedBridge.log("info: " +"\n" + imei
-                        +"\n" + screenWidth
-                        +"\n" + screenHeight
-                        +"\n" + screenDensity
-                        +"\n" + model
-                        +"\n" + device
-                        +"\n" + androidVersion
-                        +"\n" + miuiVersion
-                        +"\n" + make
-                        +"\n" + mac
-                        +"\n" + language
-                        +"\n" + country
-                        +"\n" + connectionType
-                        +"\n" + ip
-                        +"\n" + androidId
-                        +"\n" + sdk_int);
+
+                imei = pre.getString("imei", "865645234534671");
+                screenWidth = pre.getString("screenWidth", "720");
+                screenHeight = pre.getString("screenHeight", "1280");
+                screenDensity = pre.getString("screenDensity", "2.0");
+                model = pre.getString("model", "x909t");
+                device = pre.getString("device", "x909t");
+                androidVersion = pre.getString("androidVersion", "4.2");
+                miuiVersion = pre.getString("miuiVersion", "7.3.8");
+                make = pre.getString("make", "oppo");
+                sdk_int = pre.getString("sdk_int", "17");
+                language = pre.getString("language", "zh");
+                country = pre.getString("country", "CN");
+                connectionType = pre.getString("connectionType", "1");
+                ip = pre.getString("ip", "172.24.197.223");
+                androidId = pre.getString("androidId", "n4v489lh6b2ma24b");
+
+                XposedBridge.log("info: " + "\n" + imei
+                        + "\n" + screenWidth
+                        + "\n" + screenHeight
+                        + "\n" + screenDensity
+                        + "\n" + model
+                        + "\n" + device
+                        + "\n" + androidVersion
+                        + "\n" + miuiVersion
+                        + "\n" + make
+                        + "\n" + mac
+                        + "\n" + language
+                        + "\n" + country
+                        + "\n" + connectionType
+                        + "\n" + ip
+                        + "\n" + androidId
+                        + "\n" + sdk_int);
 
                 HookMethod(TelephonyManager.class, "getDeviceId", lpp);
                 HookMethodNetworkCountryIso(TelephonyManager.class, "getNetworkCountryIso", lpp);
@@ -87,11 +96,12 @@ public class Main implements IXposedHookLoadPackage {
 //                HookMethodDisplayHeight("android.view.Display", "getHeight", lpp);
                 HookMethodDisplayMetrics("android.content.res.Resources", "getDisplayMetrics", lpp);
 //                HookMethodDisplayGetMetrics("android.view.Display", "getMetrics", lpp);
-                HookMethodMacAddress("android.net.wifi.WifiInfo", "getMacAddress", lpp);
+
 //                HookMethodIpAddress("android.net.wifi.WifiInfo", "getIpAddress", lpp);
                 HookMethodHostAddress("java.net.InetAddress", "getHostAddress", lpp);
                 HookMethodSimCountryIso("android.telephony.TelephonyManager", "getSimCountryIso", lpp);
                 HookMethodConnectionType("android.net.NetworkInfo", "getType", lpp);
+
 
 //                XposedHelpers.setStaticObjectField(android.os.Build.class, "HARDWARE", "qcom");//设备硬件名称
                 XposedHelpers.setStaticObjectField(android.os.Build.class, "MANUFACTURER", make);//设备制造商
@@ -99,8 +109,9 @@ public class Main implements IXposedHookLoadPackage {
                 XposedHelpers.setStaticObjectField(android.os.Build.class, "DEVICE", device);
                 XposedHelpers.setStaticObjectField(android.os.Build.class, "MODEL", model);//设备型号
                 XposedHelpers.setStaticObjectField(android.os.Build.VERSION.class, "INCREMENTAL", miuiVersion);
-                XposedHelpers.setStaticObjectField(android.os.Build.VERSION.class, "RELEASE",androidVersion);
-                XposedHelpers.setStaticObjectField(android.os.Build.VERSION.class, "SDK_INT", sdk_int);
+                XposedHelpers.setStaticObjectField(android.os.Build.VERSION.class, "RELEASE", androidVersion);
+                XposedBridge.log("sdk_int: " + sdk_int);
+                XposedHelpers.setStaticIntField(android.os.Build.VERSION.class, "SDK_INT", Integer.parseInt(sdk_int));
                 XposedHelpers.setStaticObjectField(android.os.Build.class, "CPU_ABI", "arm64-v8a,armeabi-v7a,armeabi");
 //                Log.d("pre", "handleLoadPackage() returned: " + imei);
             }
@@ -131,7 +142,8 @@ public class Main implements IXposedHookLoadPackage {
             e.printStackTrace();
         }
     }
-    private void HookMethodNetworkCountryIso(final Class cl, final String method , final XC_LoadPackage.LoadPackageParam lpp) {
+
+    private void HookMethodNetworkCountryIso(final Class cl, final String method, final XC_LoadPackage.LoadPackageParam lpp) {
         try {
 
             XposedHelpers.findAndHookMethod(cl, method, new Object[]{new XC_MethodHook() {
@@ -148,6 +160,7 @@ public class Main implements IXposedHookLoadPackage {
             e.printStackTrace();
         }
     }
+
     private void HookMethodCountry(final Class cl, final String method, final XC_LoadPackage.LoadPackageParam lpp) {
         try {
 
@@ -157,9 +170,7 @@ public class Main implements IXposedHookLoadPackage {
                 }
 
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    XposedBridge.log("HookMethodCountry的结果: " + param.getResult());
                     param.setResult(country);
-                    XposedBridge.log("HookMethodCountry的结果: " + param.getResult());
                 }
             }});
         } catch (Throwable e) {
@@ -236,7 +247,7 @@ public class Main implements IXposedHookLoadPackage {
 
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     DisplayMetrics dm = new DisplayMetrics();
-                    dm.heightPixels = Integer.parseInt(screenHeight) ;
+                    dm.heightPixels = Integer.parseInt(screenHeight);
                     dm.widthPixels = Integer.parseInt(screenWidth);
                     dm.density = Float.parseFloat(screenDensity);
                     param.setResult((DisplayMetrics) dm);
@@ -267,59 +278,67 @@ public class Main implements IXposedHookLoadPackage {
             e.printStackTrace();
         }
     }
+
     private void HookMethodMacAddress(final String className, final String method, final XC_LoadPackage.LoadPackageParam lpp) {
         try {
             XposedHelpers.findAndHookMethod(className, lpp.classLoader, method, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 }
+
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    XposedBridge.log("mac:"+param.getResult());
                     param.setResult(mac);
+                    XposedBridge.log("mac:" + param.getResult());
                 }
             });
         } catch (Throwable e) {
             e.printStackTrace();
         }
     }
+
     private void HookMethodIpAddress(final String className, final String method, final XC_LoadPackage.LoadPackageParam lpp) {
         try {
             XposedHelpers.findAndHookMethod(className, lpp.classLoader, method, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 }
+
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    XposedBridge.log("ip:"+param.getResult());
                     param.setResult(ipToInt(ip));
+                    XposedBridge.log("ip:" + param.getResult());
                 }
             });
         } catch (Throwable e) {
             e.printStackTrace();
         }
     }
+
     private void HookMethodHostAddress(final String className, final String method, final XC_LoadPackage.LoadPackageParam lpp) {
         try {
             XposedHelpers.findAndHookMethod(className, lpp.classLoader, method, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 }
+
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    XposedBridge.log("ip:"+param.getResult());
                     param.setResult(ip);
+                    XposedBridge.log("ip:" + param.getResult());
                 }
             });
         } catch (Throwable e) {
             e.printStackTrace();
         }
     }
+
     private void HookMethodSimCountryIso(final String className, final String method, final XC_LoadPackage.LoadPackageParam lpp) {
         try {
             XposedHelpers.findAndHookMethod(className, lpp.classLoader, method, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 }
+
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    XposedBridge.log("SimCountryIso:"+param.getResult());
+                    XposedBridge.log("SimCountryIso:" + param.getResult());
                     param.setResult(country);
                 }
             });
@@ -327,15 +346,96 @@ public class Main implements IXposedHookLoadPackage {
             e.printStackTrace();
         }
     }
+
     private void HookMethodConnectionType(final String className, final String method, final XC_LoadPackage.LoadPackageParam lpp) {
         try {
             XposedHelpers.findAndHookMethod(className, lpp.classLoader, method, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 }
+
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    XposedBridge.log("connectionType:"+param.getResult());
+                    XposedBridge.log("connectionType:" + param.getResult());
                     param.setResult(Integer.parseInt(connectionType));
+                }
+            });
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void HookMethodexec(final String className, final String method, final XC_LoadPackage.LoadPackageParam lpp) {
+        try {
+            XposedHelpers.findAndHookMethod(className, lpp.classLoader, method, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                }
+
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    param.setResult(mac);
+                    XposedBridge.log("LineNumber.readLine:" + param.getResult());
+                }
+            });
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void HookMethodexecBR(final String className, final String method, final XC_LoadPackage.LoadPackageParam lpp) {
+        try {
+            XposedHelpers.findAndHookMethod(className, lpp.classLoader, method, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                }
+
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    String result = (String) param.getResult();
+//                    if(result !=null && result.length()>0){
+//                        if(result.contains("HWaddr")==true || result.contains("hwaddr")==true || result.contains("HWADDR")==true){
+//                            String Mac = result.substring(result.indexOf("HWaddr")+6, result.length()-1);
+//                            result = Mac;
+//                        }
+//                    }
+                    if (result != null && result.length() > 0) {
+                        if (result.contains("8B")) {
+                            param.setResult(mac);
+                        }
+                    }
+                    XposedBridge.log("BufferedReader'readLine:" + result);
+                }
+            });
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void HookMethodexec2(final String className, final String method, final XC_LoadPackage.LoadPackageParam lpp) {
+        try {
+            XposedHelpers.findAndHookMethod(className, lpp.classLoader, method, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                }
+
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    param.setResult(mac);
+                    XposedBridge.log("toUpperCase:" + param.getResult());
+                }
+            });
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void HookMethodexecHardwareAddress(final String className, final String method, final XC_LoadPackage.LoadPackageParam lpp) {
+        try {
+            XposedHelpers.findAndHookMethod(className, lpp.classLoader, method, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                }
+
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    param.setResult(mac2Array(mac));
+                    XposedBridge.log("getHardwareAddress:" + param.getResult());
                 }
             });
         } catch (Throwable e) {
@@ -349,6 +449,25 @@ public class Main implements IXposedHookLoadPackage {
                 + (Integer.parseInt(ips[2]) << 8) + Integer.parseInt(ips[3]);
 //        return Integer.parseInt(ips[0] +(Integer.parseInt(ips[1]) << 8)+
 //                (Integer.parseInt(ips[2]) << 16)+(Integer.parseInt(ips[3]) << 24));
+    }
+
+    /**
+     * 将mac地址转换为byte数组
+     *
+     * @return
+     */
+    public static byte[] mac2Array(String mac) {
+        byte[] macBytes = new byte[6];
+        try {
+            String[] strings = mac.split(":");
+            for (int i = 0; i < strings.length; i++) {
+                macBytes[i] = Integer.valueOf(strings[i], 16).byteValue();
+            }
+            System.out.println(macBytes);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return macBytes;
     }
 
     /**

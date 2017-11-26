@@ -14,17 +14,21 @@ public class Test {
 //        System.out.println("aaa:"+aaa);
 //        aaa = "222";
 //        System.out.println("aaa:"+aaa);
-        for (int i = 0; i < 100; i++) {
+//        for (int i = 0; i < 100; i++) {
 //            System.out.println("add(\""+randomIMEI()+"\");");
 //           createRandomCharData(16);
 //            createRandomScreen();
 //            createRandomVersion();
 //            createRandomPhone();
-            createRandomIp();
-        }
+//            createRandomIp();
+//        }
+//        getNewMac();
+//        changeMac2byte();
+
 //        createRandomMac();
 //        getMethodInfo("android.telephony.TelephonyManager");
-
+        String hexString = "E0:A3:AC:2F:76:20";
+        mac2Array(hexString);
 
     }
 
@@ -405,14 +409,96 @@ public class Test {
          */
         switch (indexIp) {
             case 0://
-                System.out.println("add(\"10."+rand.nextInt(255)+"."+rand.nextInt(255)+"."+rand.nextInt(255)+"\");");
+                System.out.println("add(\"10." + rand.nextInt(255) + "." + rand.nextInt(255) + "." + rand.nextInt(255) + "\");");
                 break;
             case 1://
-                System.out.println("add(\"172."+(16+rand.nextInt(15))+"."+rand.nextInt(255)+"."+rand.nextInt(255)+"\");");
+                System.out.println("add(\"172." + (16 + rand.nextInt(15)) + "." + rand.nextInt(255) + "." + rand.nextInt(255) + "\");");
                 break;
             case 2://
-                System.out.println("add(\"192.168."+rand.nextInt(255)+"."+rand.nextInt(255)+"\");");
+                System.out.println("add(\"192.168." + rand.nextInt(255) + "." + rand.nextInt(255) + "\");");
                 break;
         }
+    }
+
+    /**
+     * @return
+     */
+    private static void getNewMac() {
+        try {
+            byte[] macBytes = new byte[]{12, 23, 34, 45, 56, 67};
+            StringBuilder res1 = new StringBuilder();
+            for (byte b : macBytes) {
+                System.out.println("b: " + b);
+                System.out.println(String.format("%02X:", b));
+                res1.append(String.format("%02X:", b));
+            }
+            if (res1.length() > 0) {
+                res1.deleteCharAt(res1.length() - 1);
+            }
+            System.out.println(res1.toString());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    //16进制转二进制
+    public static String hexString2binaryString(String hexString) {
+        if (hexString == null || hexString.length() % 2 != 0)
+            return null;
+        String bString = "", tmp;
+        for (int i = 0; i < hexString.length(); i++) {
+            tmp = "0000"
+                    + Integer.toBinaryString(Integer.parseInt(hexString
+                    .substring(i, i + 1), 16));
+            bString += tmp.substring(tmp.length() - 4);
+        }
+        return bString;
+    }
+    //二进制转16进制
+    public static String binaryString2hexString(String bString)
+    {
+        if (bString == null || bString.equals("") || bString.length() % 8 != 0)
+            return null;
+        StringBuffer tmp = new StringBuffer();
+        int iTmp = 0;
+        for (int i = 0; i < bString.length(); i += 4)
+        {
+            iTmp = 0;
+            for (int j = 0; j < 4; j++)
+            {
+                iTmp += Integer.parseInt(bString.substring(i + j, i + j + 1)) << (4 - j - 1);
+            }
+            tmp.append(Integer.toHexString(iTmp));
+        }
+        return tmp.toString();
+    }
+
+    /**
+     * 将mac地址转换为byte数组
+     * @return
+     */
+    public static byte[] mac2Array(String mac) {
+        byte[] macBytes = new byte[6];
+        try {
+            String[] strings = mac.split(":");
+            for (int i = 0;i<strings.length;i++){
+                macBytes[i] = Integer.valueOf(strings[i],16).byteValue();
+            }
+            System.out.println(macBytes);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return macBytes;
+    }
+
+    public static byte[] conver16HexToByte(String hex16Str)
+    {
+        char [] c = hex16Str.toCharArray();
+        byte [] b = new byte[c.length/2];
+        for(int i = 0;i<b.length;i++)
+        {
+            int pos = i * 2;
+            b[i] = (byte)("0123456789ABCDEF".indexOf(c[pos]) << 4 | "0123456789ABCDEF".indexOf(c[pos+1]));
+        }
+        return b;
     }
 }

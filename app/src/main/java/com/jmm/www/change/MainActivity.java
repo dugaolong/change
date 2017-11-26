@@ -1,16 +1,16 @@
 package com.jmm.www.change;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Process;
 import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -20,15 +20,23 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+import java.io.Reader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Collections;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private static final String TAG = "MainActivity";
     public static final int REQUESTCODE_READ_PHONE_STATE = 1;
@@ -87,7 +95,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 //        ((TextView) findViewById(R.id.info)).setText(getDeviceInfo() + getSystemInfo());
-        ((TextView) findViewById(R.id.info)).setText(getChangedInfo());
+        ((TextView) findViewById(R.id.info)).setText(getChangedInfo()+"1111"+getMac()+"\n"+
+                "2222"+getLocalMacAddressFromWifiInfo(this)+"\n"+
+                "3333"+getLocalMacAddressFromBusybox()+"\n"+
+//                "4444"+getLocalMacAddressFromIp(this)+"\n"+
+                "5555"+tryGetWifiMac(this)+"\n"+
+                "6666"+getNewMac());
 //        System.out.println(getDeviceInfo() + getSystemInfo());
 //        this.printDeviceHardwareInfo();
 //        this.printScreen();
@@ -139,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
         sb.append("版本MODEL：" + Build.MODEL + "\n");
         sb.append("设备参数DEVICE： " + Build.DEVICE + "\n");
         sb.append("Build.VERSION.RELEASE:androidVersion: " + Build.VERSION.RELEASE+ "\n");
+        sb.append("Build.VERSION.SDK_INT: " + Build.VERSION.SDK_INT+ "\n");
         sb.append("Build.VERSION.INCREMENTAL:miuiVersion: " + Build.VERSION.INCREMENTAL+ "\n");
         sb.append("硬件制造商MANUFACTURER：make:" + Build.MANUFACTURER + "\n");
         sb.append("imei： " + SystemUtil.getIMEI(this) + "\n");
@@ -152,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         sb.append("connectionType :" + networkInfo.getType()+ "\n");//范围1-17
         sb.append("IpAddress :" + info.getIpAddress()+ "\n");
         sb.append("Build.androidId: " + Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)+ "\n");
-        sb.append("Build.VERSION.SDK_INT: " + Build.VERSION.SDK_INT);
+
         return sb.toString();
     }
     public static String getDeviceInfo() {
@@ -236,28 +250,6 @@ public class MainActivity extends AppCompatActivity {
         return sb.toString();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case 1:
-                if (requestCode == REQUESTCODE_READ_PHONE_STATE) {
-                    if (grantResults.length > 0) {
-                        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                            // Permission Granted
-//                        Toast.makeText(this,"You Granted the permission",Toast.LENGTH_LONG).show();
-                        } else {
-                            // Permission Denied
-//                        Toast.makeText(this,"You denied the permission",Toast.LENGTH_LONG).show();
-                            Toast.makeText(this, "您禁止了DUQU权限!", Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                }
-                break;
-            default:
-        }
-    }
 
     public void printScreen() {
         // 通过WindowManager获取
@@ -340,4 +332,204 @@ public class MainActivity extends AppCompatActivity {
         return sbBuilder.toString();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Process.killProcess(android.os.Process.myPid());
+        System.exit(0);
+    }
+
+    public static String getMac() {
+        String str = "";
+        String macSerial = "";
+        try {
+            java.lang.Process pp = Runtime.getRuntime().exec(
+                    "cat /sys/class/net/wlan0/address ");
+            InputStreamReader ir = new InputStreamReader(pp.getInputStream());
+            LineNumberReader input = new LineNumberReader(ir);
+
+            for (; null != str;) {
+                str = input.readLine();
+                if (str != null) {
+                    macSerial = str.trim();// 去空格
+                    break;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        if (macSerial == null || "".equals(macSerial)) {
+            try {
+                return loadFileAsString("/sys/class/net/eth0/address")
+                        .toUpperCase().substring(0, 17);
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+
+        }
+        return macSerial;
+    }
+    public static String loadFileAsString(String fileName) throws Exception {
+        FileReader reader = new FileReader(fileName);
+        String text = loadReaderAsString(reader);
+        reader.close();
+        return text;
+    }
+    public static String loadReaderAsString(Reader reader) throws Exception {
+        StringBuilder builder = new StringBuilder();
+        char[] buffer = new char[4096];
+        int readLength = reader.read(buffer);
+        while (readLength >= 0) {
+            builder.append(buffer, 0, readLength);
+            readLength = reader.read(buffer);
+        }
+        return builder.toString();
+    }
+
+    public static String getLocalMacAddressFromWifiInfo(Context context){
+        WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo info = wifi.getConnectionInfo();
+        return info.getMacAddress();
+    }
+    public static String getLocalMacAddressFromBusybox(){
+        String result = "";
+        String Mac = "";
+        result = callCmd("busybox ifconfig","HWaddr");
+
+        //如果返回的result == null，则说明网络不可取
+        if(result==null){
+            return "网络出错，请检查网络";
+        }
+
+        //对该行数据进行解析
+        //例如：eth0      Link encap:Ethernet  HWaddr 00:16:E8:3E:DF:67
+        if(result.length()>0 && result.contains("HWaddr")==true){
+            Mac = result.substring(result.indexOf("HWaddr")+6, result.length()-1);
+            Log.i("test","Mac:"+Mac+" Mac.length: "+Mac.length());
+            result = Mac;
+            Log.i("test",result+" result.length: "+result.length());
+        }
+        return result;
+    }
+    private static String callCmd(String cmd,String filter) {
+        String result = "";
+        String line = "";
+        try {
+            java.lang.Process proc = Runtime.getRuntime().exec(cmd);
+            InputStreamReader is = new InputStreamReader(proc.getInputStream());
+            BufferedReader br = new BufferedReader (is);
+
+            //执行命令cmd，只取结果中含有filter的这一行
+            while ((line = br.readLine ()) != null && line.contains(filter)== false) {
+                //result += line;
+                Log.i("test","line: "+line);
+            }
+
+            result = line;
+            Log.i("test","result: "+result);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    public static String getLocalMacAddressFromIp(Context context) {
+        String mac_s= "";
+        try {
+            byte[] mac;
+            NetworkInterface ne=NetworkInterface.getByInetAddress(InetAddress.getByName(getLocalIpAddress()));
+            mac = ne.getHardwareAddress();
+            mac_s = byte2hex(mac);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return mac_s;
+    }
+
+    public static  String byte2hex(byte[] b) {
+        StringBuffer hs = new StringBuffer(b.length);
+        String stmp = "";
+        int len = b.length;
+        for (int n = 0; n < len; n++) {
+            stmp = Integer.toHexString(b[n] & 0xFF);
+            if (stmp.length() == 1)
+                hs = hs.append("0").append(stmp);
+            else {
+                hs = hs.append(stmp);
+            }
+        }
+        return String.valueOf(hs);
+    }
+    public static String getLocalIpAddress() {
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface
+                    .getNetworkInterfaces(); en.hasMoreElements();) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf
+                        .getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress()) {
+                        return inetAddress.getHostAddress().toString();
+                    }
+                }
+            }
+        } catch (SocketException ex) {
+            Log.e("WifiPreferIpAddress:", ex.toString());
+        }
+
+        return null;
+    }
+
+    /**
+     * 通过WiFiManager获取mac地址
+     * @param context
+     * @return
+     */
+    private static String tryGetWifiMac(Context context) {
+        WifiManager wm = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wi = wm.getConnectionInfo();
+        if (wi == null || wi.getMacAddress() == null) {
+            return null;
+        }
+        if ("02:00:00:00:00:00".equals(wi.getMacAddress().trim())) {
+            return null;
+        } else {
+            return wi.getMacAddress().trim();
+        }
+    }
+
+    /**
+     * 通过网络接口取
+     * @return
+     */
+    private static String getNewMac() {
+        try {
+            List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface nif : all) {
+                if (!nif.getName().equalsIgnoreCase("wlan0")) continue;
+
+                byte[] macBytes = nif.getHardwareAddress();
+                if (macBytes == null) {
+                    return null;
+                }
+
+                StringBuilder res1 = new StringBuilder();
+                for (byte b : macBytes) {
+                    Log.i("getNewMac","b: "+b);
+                    Log.i("getNewMac.format",String.format("%02X:", b));
+                    res1.append(String.format("%02X:", b));
+                }
+
+                if (res1.length() > 0) {
+                    res1.deleteCharAt(res1.length() - 1);
+                }
+                return res1.toString();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }
