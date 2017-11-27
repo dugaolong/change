@@ -14,14 +14,14 @@ public class Test {
 //        System.out.println("aaa:"+aaa);
 //        aaa = "222";
 //        System.out.println("aaa:"+aaa);
-//        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
 //            System.out.println("add(\""+randomIMEI()+"\");");
 //           createRandomCharData(16);
 //            createRandomScreen();
-//            createRandomVersion();
+            createRandomVersion();
 //            createRandomPhone();
 //            createRandomIp();
-//        }
+        }
 //        getNewMac();
 //        changeMac2byte();
 
@@ -135,33 +135,45 @@ public class Test {
 
     public static void createRandomVersion() {
         Random rand = new Random();//随机用以下三个随机生成器
-        int indexVersion = rand.nextInt(8);
+        int indexVersion = rand.nextInt(6);
         //目的是随机选择生成数字，大小写字母
         switch (indexVersion) {
             case 0://
                 System.out.println("add(new VersionInfo(\"4.2\",\"17\"));");
                 break;
             case 1://
-                System.out.println("add(new VersionInfo(\"4.4.4\",\"19\"));");
+                System.out.println("add(new VersionInfo(\"4.2.1\",\"17\"));");
                 break;
             case 2://
-                System.out.println("add(new VersionInfo(\"5.0.1\",\"21\"));");
+                System.out.println("add(new VersionInfo(\"4.4.4\",\"19\"));");
                 break;
             case 3://
-                System.out.println("add(new VersionInfo(\"5.0.2\",\"21\"));");
+                System.out.println("add(new VersionInfo(\"4.4.2\",\"19\"));");
                 break;
             case 4://
-                System.out.println("add(new VersionInfo(\"5.1.1\",\"22\"));");
+                System.out.println("add(new VersionInfo(\"4.3\",\"18\"));");
                 break;
             case 5://
-                System.out.println("add(new VersionInfo(\"6.0\",\"19\"));");
+                System.out.println("add(new VersionInfo(\"4.0.3\",\"15\"));");
                 break;
-            case 6://
-                System.out.println("add(new VersionInfo(\"6.0.1\",\"23\"));");
-                break;
-            case 7://
-                System.out.println("add(new VersionInfo(\"7.0\",\"24\"));");
-                break;
+//            case 2://
+//                System.out.println("add(new VersionInfo(\"5.0.1\",\"21\"));");
+//                break;
+//            case 3://
+//                System.out.println("add(new VersionInfo(\"5.0.2\",\"21\"));");
+//                break;
+//            case 4://
+//                System.out.println("add(new VersionInfo(\"5.1.1\",\"22\"));");
+//                break;
+//            case 5://
+//                System.out.println("add(new VersionInfo(\"6.0\",\"23\"));");
+//                break;
+//            case 6://
+//                System.out.println("add(new VersionInfo(\"6.0.1\",\"23\"));");
+//                break;
+//            case 7://
+//                System.out.println("add(new VersionInfo(\"7.0\",\"24\"));");
+//                break;
         }
 
     }

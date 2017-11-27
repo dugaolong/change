@@ -95,12 +95,14 @@ public class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
 //        ((TextView) findViewById(R.id.info)).setText(getDeviceInfo() + getSystemInfo());
-        ((TextView) findViewById(R.id.info)).setText(getChangedInfo()+"1111"+getMac()+"\n"+
-                "2222"+getLocalMacAddressFromWifiInfo(this)+"\n"+
-                "3333"+getLocalMacAddressFromBusybox()+"\n"+
+        ((TextView) findViewById(R.id.info)).setText(getChangedInfo() );
+//                +"1111"+getMac()+"\n"+
+//                "2222"+getLocalMacAddressFromWifiInfo(this)+"\n"+
+//                "3333"+getLocalMacAddressFromBusybox()+"\n"+
 //                "4444"+getLocalMacAddressFromIp(this)+"\n"+
-                "5555"+tryGetWifiMac(this)+"\n"+
-                "6666"+getNewMac());
+//                "5555"+tryGetWifiMac(this)+"\n"+
+//                "6666"+getNewMac()
+//        );
 //        System.out.println(getDeviceInfo() + getSystemInfo());
 //        this.printDeviceHardwareInfo();
 //        this.printScreen();
@@ -136,8 +138,6 @@ public class MainActivity extends Activity {
 //                    "\""+SystemUtil.ipList.get(i)+"\"," +
 //                    "\""+SystemUtil.androididList.get(i)+"\"," +
 //                    "\""+SystemUtil.versionList.get(i).getSdkInt()+"\"));");
-////            System.out.println("add(new Info(\"1080\",\"1920\",\"3.0\",\"MI 2S\",\"kenzo\",\"5.0.2LRX22G\",\"V8.2\",\"xiaomi\",
-//// \"860847420878608\",\"00:24:7C:2C:A9:75\",\"zh\",\"CN\",\"1\",\"192.168.0.21\",\"d1b32108050901eb\",\"19\"));");
 //        }
 
     }
