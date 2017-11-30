@@ -10,25 +10,25 @@ public class Test {
     public static String aaa;
 
     public static void main(String[] args) {
-//        aaa = "111";
-//        System.out.println("aaa:"+aaa);
-//        aaa = "222";
-//        System.out.println("aaa:"+aaa);
-        for (int i = 0; i < 100; i++) {
+//        System.out.println((16 + new Random().nextInt(15)));
+        for (int i = 0; i < 1000; i++) {
 //            System.out.println("add(\""+randomIMEI()+"\");");
-//           createRandomCharData(16);
+//           createRandomAndroidid(16);
 //            createRandomScreen();
-            createRandomVersion();
+//            createRandomVersion();
 //            createRandomPhone();
-//            createRandomIp();
+            createRandomIp();
+//            createRandom900Mac();
+//        System.out.println(( new Random().nextInt(254)+1));
         }
+
 //        getNewMac();
 //        changeMac2byte();
 
 //        createRandomMac();
 //        getMethodInfo("android.telephony.TelephonyManager");
-        String hexString = "E0:A3:AC:2F:76:20";
-        mac2Array(hexString);
+//        String hexString = "E0:A3:AC:2F:76:20";
+//        mac2Array(hexString);
 
     }
 
@@ -91,7 +91,7 @@ public class Test {
     //0~9的ASCII为48~57
     //A~Z的ASCII为65~90
     //a~z的ASCII为97~122
-    public static void createRandomCharData(int length) {
+    public static void createRandomAndroidid(int length) {
         StringBuilder sb = new StringBuilder();
         Random rand = new Random();//随机用以下三个随机生成器
         Random randdata = new Random();
@@ -119,6 +119,34 @@ public class Test {
         System.out.println("add(\"" + result + "\");");
     }
 
+    //根据指定长度生成字母和数字的随机数
+    //0~9的ASCII为48~57
+    //A~Z的ASCII为65~90
+    //a~z的ASCII为97~122
+    public static void createRandom900Mac() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(Integer.toHexString(new Random().nextInt(16)));
+        sb.append(Integer.toHexString(new Random().nextInt(16)));
+        sb.append(":");
+        sb.append(Integer.toHexString(new Random().nextInt(16)));
+        sb.append(Integer.toHexString(new Random().nextInt(16)));
+        sb.append(":");
+        sb.append(Integer.toHexString(new Random().nextInt(16)));
+        sb.append(Integer.toHexString(new Random().nextInt(16)));
+        sb.append(":");
+        sb.append(Integer.toHexString(new Random().nextInt(16)));
+        sb.append(Integer.toHexString(new Random().nextInt(16)));
+        sb.append(":");
+        sb.append(Integer.toHexString(new Random().nextInt(16)));
+        sb.append(Integer.toHexString(new Random().nextInt(16)));
+        sb.append(":");
+        sb.append(Integer.toHexString(new Random().nextInt(16)));
+        sb.append(Integer.toHexString(new Random().nextInt(16)));
+
+        String result = sb.toString();
+        System.out.println("add(\"" + result + "\");");
+    }
+
     public static void createRandomScreen() {
         Random rand = new Random();//随机用以下三个随机生成器
         int index = rand.nextInt(2);
@@ -135,7 +163,7 @@ public class Test {
 
     public static void createRandomVersion() {
         Random rand = new Random();//随机用以下三个随机生成器
-        int indexVersion = rand.nextInt(6);
+        int indexVersion = rand.nextInt(7);
         //目的是随机选择生成数字，大小写字母
         switch (indexVersion) {
             case 0://
@@ -154,7 +182,10 @@ public class Test {
                 System.out.println("add(new VersionInfo(\"4.3\",\"18\"));");
                 break;
             case 5://
-                System.out.println("add(new VersionInfo(\"4.0.3\",\"15\"));");
+                System.out.println("add(new VersionInfo(\"4.4.1\",\"19\"));");
+                break;
+            case 6://
+                System.out.println("add(new VersionInfo(\"4.2.2\",\"17\"));");
                 break;
 //            case 2://
 //                System.out.println("add(new VersionInfo(\"5.0.1\",\"21\"));");
@@ -262,17 +293,6 @@ public class Test {
             case 2://oppo
                 int indexModel3 = rand.nextInt(9);
                 switch (indexModel3) {
-                    /**
-                     *  "OPPO R7S": "OPPO R7S",
-                     "OPPO R7": "OPPO R7",
-                     "OPPO R7Plus": "OPPO R7Plus",
-                     "OPPO A53": "OPPO A53",
-                     "OPPO U3": "6607",
-                     "R9 Plus": "R9 Plus",
-                     "OPPO Find7": "x9007",
-                     "OPPO Find5": "x909t",
-                     "OPPO R9": "OPPO R9m"
-                     */
                     case 0://
                         System.out.println("add(new PhoneInfo(\"OPPO R7S\",\"eng.root.20160130.230736\",\"7.5.6\",\"oppo\"));");
                         break;
@@ -299,6 +319,193 @@ public class Test {
                         break;
                     case 8://
                         System.out.println("add(new PhoneInfo(\"OPPO R9m\",\"R9m\",\"9.2.2\",\"oppo\"));");
+                        break;
+                }
+                break;
+            case 3://htc
+                int indexModel4 = rand.nextInt(12);
+                switch (indexModel4) {
+                    case 0://
+                        System.out.println("add(new PhoneInfo(\"HTC M9e\",\"M9e\",\"7.5.7\",\"htc\"));");
+                        break;
+                    case 1://
+                        System.out.println("add(new PhoneInfo(\"HTC One A9\",\"OneA9\",\"4.7.6\",\"htc\"));");
+                        break;
+                    case 2://
+                        System.out.println("add(new PhoneInfo(\"HTC X9u\",\"X9u\",\"5.7.9\",\"htc\"));");
+                        break;
+                    case 3://
+                        System.out.println("add(new PhoneInfo(\"HTC E9pw\",\"E9pw\",\"3.9.7\",\"htc\"));");
+                        break;
+                    case 4://
+                        System.out.println("add(new PhoneInfo(\"HTC M8St\",\"M8St\",\"4.4.8\",\"htc\"));");
+                        break;
+                    case 5://
+                        System.out.println("add(new PhoneInfo(\"Nexus 9\",\"Nexus9\",\"7.8.9\",\"htc\"));");
+                        break;
+                    case 6://
+                        System.out.println("add(new PhoneInfo(\"HTC S720e\",\"S720e\",\"7.7.1\",\"htc\"));");
+                        break;
+                    case 7://
+                        System.out.println("add(new PhoneInfo(\"HTC Z520e\",\"Z520e\",\"7.3.9\",\"htc\"));");
+                        break;
+                    case 8://
+                        System.out.println("add(new PhoneInfo(\"HTC T320e\",\"T320e\",\"9.2.3\",\"htc\"));");
+                        break;
+                    case 9://
+                        System.out.println("add(new PhoneInfo(\"HTC Z710t\",\"Z710t\",\"4.2.4\",\"htc\"));");
+                        break;
+                    case 10://
+                        System.out.println("add(new PhoneInfo(\"HTC C510e\",\"C510e\",\"3.3.2\",\"htc\"));");
+                        break;
+                    case 11://
+                        System.out.println("add(new PhoneInfo(\"HTC S510\",\"S510\",\"5.3.6\",\"htc\"));");
+                        break;
+                }
+                break;
+            case 5://360
+                int indexModel5 = rand.nextInt(2);
+                switch (indexModel5) {
+                    case 0://
+                        System.out.println("add(new PhoneInfo(\"1501_M02\",\"1501M02\",\"7.6.7\",\"360\"));");
+                        break;
+                    case 1://
+                        System.out.println("add(new PhoneInfo(\"1509_A00\",\"1509A00\",\"4.8.6\",\"360\"));");
+                        break;
+                }
+                break;
+            case 6://BlackBerry
+                System.out.println("add(new PhoneInfo(\"STV100-3\",\"STV1003\",\"7.6.78\",\"BlackBerry\"));");
+                break;
+            case 7://Lenovo
+                int indexModel7 = rand.nextInt(7);
+                switch (indexModel7) {
+                    case 0://
+                        System.out.println("add(new PhoneInfo(\"Lenovo A7600-m\",\"A7600-m\",\"3.6.7\",\"Lenovo\"));");
+                        break;
+                    case 1://
+                        System.out.println("add(new PhoneInfo(\"Lenovo A3580\",\"A3580\",\"4.8.6s\",\"Lenovo\"));");
+                        break;
+                    case 2://
+                        System.out.println("add(new PhoneInfo(\"Lenovo A938t\",\"A938t\",\"4.2.4f\",\"Lenovo\"));");
+                        break;
+                    case 3://
+                        System.out.println("add(new PhoneInfo(\"Lenovo K30-T\",\"K30-T\",\"2.4.61\",\"Lenovo\"));");
+                        break;
+                    case 4://
+                        System.out.println("add(new PhoneInfo(\"Lenovo K50-t3s\",\"K50-t3s\",\"3.0.6\",\"Lenovo\"));");
+                        break;
+                    case 5://
+                        System.out.println("add(new PhoneInfo(\"Lenovo K32C36\",\"K32C36\",\"2.4.4\",\"Lenovo\"));");
+                        break;
+                    case 6://
+                        System.out.println("add(new PhoneInfo(\"Lenovo Z90-3\",\"Z90-3\",\"8.7\",\"Lenovo\"));");
+                        break;
+                }
+                break;
+            case 8://Meizu
+                int indexModel8 = rand.nextInt(10);
+                switch (indexModel8) {
+                    case 0://
+                        System.out.println("add(new PhoneInfo(\"M040\",\"M040\",\"4.6.7\",\"Meizu\"));");
+                        break;
+                    case 1://
+                        System.out.println("add(new PhoneInfo(\"M355\",\"M355\",\"5.8.6s\",\"Meizu\"));");
+                        break;
+                    case 2://
+                        System.out.println("add(new PhoneInfo(\"MX4\",\"MX4\",\"5.2.4f\",\"Meizu\"));");
+                        break;
+                    case 3://
+                        System.out.println("add(new PhoneInfo(\"MX4 Pro\",\"MX4 Pro\",\"3.4.61\",\"Meizu\"));");
+                        break;
+                    case 4://
+                        System.out.println("add(new PhoneInfo(\"M575M\",\"M575M\",\"4.0.6\",\"Meizu\"));");
+                        break;
+                    case 5://
+                        System.out.println("add(new PhoneInfo(\"PRO 6\",\"PRO6\",\"3.4.4\",\"Meizu\"));");
+                        break;
+                    case 6://
+                        System.out.println("add(new PhoneInfo(\"m1 note\",\"m1note\",\"9.7\",\"Meizu\"));");
+                        break;
+                    case 7://
+                        System.out.println("add(new PhoneInfo(\"m3 note\",\"m3note\",\"8.3\",\"Meizu\"));");
+                        break;
+                    case 8://
+                        System.out.println("add(new PhoneInfo(\"m1 metal\",\"m1metal\",\"2.7\",\"Meizu\"));");
+                        break;
+                    case 9://
+                        System.out.println("add(new PhoneInfo(\"m3\",\"m3\",\"8.5s\",\"Meizu\"));");
+                        break;
+                }
+                break;
+            case 9://samsung
+                int indexModel9 = rand.nextInt(22);
+                switch (indexModel9) {
+                    case 0://
+                        System.out.println("add(new PhoneInfo(\"SM-G9280\",\"G9280\",\"4.7.7\",\"samsung\"));");
+                        break;
+                    case 1://
+                        System.out.println("add(new PhoneInfo(\"SM-A9000\",\"A9000\",\"5.9.6s\",\"samsung\"));");
+                        break;
+                    case 2://
+                        System.out.println("add(new PhoneInfo(\"SM-G6000\",\"G6000\",\"5.3.4f\",\"samsung\"));");
+                        break;
+                    case 3://
+                        System.out.println("add(new PhoneInfo(\"SM-A7100\",\"A7100\",\"3.5.61\",\"samsung\"));");
+                        break;
+                    case 4://
+                        System.out.println("add(new PhoneInfo(\"SM-A5100\",\"A5100\",\"4.1.6\",\"samsung\"));");
+                        break;
+                    case 5://
+                        System.out.println("add(new PhoneInfo(\"SM-J3109\",\"J3109\",\"3.5.4\",\"samsung\"));");
+                        break;
+                    case 6://
+                        System.out.println("add(new PhoneInfo(\"SM-N9200\",\"N9200\",\"9.0.7\",\"samsung\"));");
+                        break;
+                    case 7://
+                        System.out.println("add(new PhoneInfo(\"SM-G5500\",\"G5500\",\"8.0.3\",\"samsung\"));");
+                        break;
+                    case 8://
+                        System.out.println("add(new PhoneInfo(\"SM-G9198\",\"G9198\",\"2.0.7\",\"samsung\"));");
+                        break;
+                    case 9://
+                        System.out.println("add(new PhoneInfo(\"SM-J7008\",\"J7008\",\"8.0.5s\",\"samsung\"));");
+                        break;
+                    case 10://
+                        System.out.println("add(new PhoneInfo(\"SM-J5008\",\"J5008\",\"7.6.6\",\"samsung\"));");
+                        break;
+                    case 11://
+                        System.out.println("add(new PhoneInfo(\"SM-A8000\",\"A8000\",\"4.8.5\",\"samsung\"));");
+                        break;
+                    case 12://
+                        System.out.println("add(new PhoneInfo(\"SM-G9208\",\"G9208\",\"5.8.8\",\"samsung\"));");
+                        break;
+                    case 13://
+                        System.out.println("add(new PhoneInfo(\"SM-W2015\",\"W2015\",\"3.0.6\",\"samsung\"));");
+                        break;
+                    case 14://
+                        System.out.println("add(new PhoneInfo(\"SM-G9300\",\"G9300\",\"4.5.7\",\"samsung\"));");
+                        break;
+                    case 15://
+                        System.out.println("add(new PhoneInfo(\"SM-G9350\",\"G9350\",\"7.9.8\",\"samsung\"));");
+                        break;
+                    case 16://
+                        System.out.println("add(new PhoneInfo(\"W2016\",\"W2016\",\"7.8.0\",\"samsung\"));");
+                        break;
+                    case 17://
+                        System.out.println("add(new PhoneInfo(\"SM-T320\",\"T320\",\"7.4.8\",\"samsung\"));");
+                        break;
+                    case 18://
+                        System.out.println("add(new PhoneInfo(\"GT-N8000\",\"N8000\",\"9.3.2\",\"samsung\"));");
+                        break;
+                    case 19://
+                        System.out.println("add(new PhoneInfo(\"SM-T805c\",\"T805c\",\"7.4.7\",\"samsung\"));");
+                        break;
+                    case 20://
+                        System.out.println("add(new PhoneInfo(\"SM-T800\",\"T800\",\"9.3.15\",\"samsung\"));");
+                        break;
+                    case 21://
+                        System.out.println("add(new PhoneInfo(\"SM-G890A\",\"G890A\",\"8.6.5\",\"samsung\"));");
                         break;
                 }
                 break;
@@ -421,13 +628,13 @@ public class Test {
          */
         switch (indexIp) {
             case 0://
-                System.out.println("add(\"10." + rand.nextInt(255) + "." + rand.nextInt(255) + "." + rand.nextInt(255) + "\");");
+                System.out.println("add(\"10." + (rand.nextInt(254)+1) + "." + (rand.nextInt(254)+1) + "." + (rand.nextInt(254)+1) + "\");");
                 break;
             case 1://
-                System.out.println("add(\"172." + (16 + rand.nextInt(15)) + "." + rand.nextInt(255) + "." + rand.nextInt(255) + "\");");
+                System.out.println("add(\"172." + (16 + rand.nextInt(15)) + "." + (rand.nextInt(254)+1) + "." + (rand.nextInt(254)+1) + "\");");
                 break;
             case 2://
-                System.out.println("add(\"192.168." + rand.nextInt(255) + "." + rand.nextInt(255) + "\");");
+                System.out.println("add(\"192.168." + (rand.nextInt(254)+1) + "." + (rand.nextInt(254)+1) + "\");");
                 break;
         }
     }
@@ -452,6 +659,7 @@ public class Test {
             ex.printStackTrace();
         }
     }
+
     //16进制转二进制
     public static String hexString2binaryString(String hexString) {
         if (hexString == null || hexString.length() % 2 != 0)
@@ -465,18 +673,16 @@ public class Test {
         }
         return bString;
     }
+
     //二进制转16进制
-    public static String binaryString2hexString(String bString)
-    {
+    public static String binaryString2hexString(String bString) {
         if (bString == null || bString.equals("") || bString.length() % 8 != 0)
             return null;
         StringBuffer tmp = new StringBuffer();
         int iTmp = 0;
-        for (int i = 0; i < bString.length(); i += 4)
-        {
+        for (int i = 0; i < bString.length(); i += 4) {
             iTmp = 0;
-            for (int j = 0; j < 4; j++)
-            {
+            for (int j = 0; j < 4; j++) {
                 iTmp += Integer.parseInt(bString.substring(i + j, i + j + 1)) << (4 - j - 1);
             }
             tmp.append(Integer.toHexString(iTmp));
@@ -486,14 +692,15 @@ public class Test {
 
     /**
      * 将mac地址转换为byte数组
+     *
      * @return
      */
     public static byte[] mac2Array(String mac) {
         byte[] macBytes = new byte[6];
         try {
             String[] strings = mac.split(":");
-            for (int i = 0;i<strings.length;i++){
-                macBytes[i] = Integer.valueOf(strings[i],16).byteValue();
+            for (int i = 0; i < strings.length; i++) {
+                macBytes[i] = Integer.valueOf(strings[i], 16).byteValue();
             }
             System.out.println(macBytes);
         } catch (Exception ex) {
@@ -502,15 +709,35 @@ public class Test {
         return macBytes;
     }
 
-    public static byte[] conver16HexToByte(String hex16Str)
-    {
-        char [] c = hex16Str.toCharArray();
-        byte [] b = new byte[c.length/2];
-        for(int i = 0;i<b.length;i++)
-        {
+    public static byte[] conver16HexToByte(String hex16Str) {
+        char[] c = hex16Str.toCharArray();
+        byte[] b = new byte[c.length / 2];
+        for (int i = 0; i < b.length; i++) {
             int pos = i * 2;
-            b[i] = (byte)("0123456789ABCDEF".indexOf(c[pos]) << 4 | "0123456789ABCDEF".indexOf(c[pos+1]));
+            b[i] = (byte) ("0123456789ABCDEF".indexOf(c[pos]) << 4 | "0123456789ABCDEF".indexOf(c[pos + 1]));
         }
         return b;
+    }
+
+    /**
+     * 获取16进制随机数
+     *
+     * @param len
+     * @return
+     * @throws CoderException
+     */
+    public static String randomHex(int len) {
+        try {
+            StringBuffer result = new StringBuffer();
+            for (int i = 0; i < len; i++) {
+                result.append(Integer.toHexString(new Random().nextInt(16)));
+            }
+            return result.toString().toUpperCase();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 }

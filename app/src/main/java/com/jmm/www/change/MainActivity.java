@@ -107,7 +107,7 @@ public class MainActivity extends Activity {
 //        this.printDeviceHardwareInfo();
 //        this.printScreen();
 
-//        for (int i = 0; i < 100; i++) {
+        for (int i = 900; i < 1000; i++) {
 //
 ////            SystemUtil.screenInfoList.get(i).getScreenWidth();
 ////            SystemUtil.screenInfoList.get(i).getScreenHeight();
@@ -122,23 +122,23 @@ public class MainActivity extends Activity {
 ////            SystemUtil.ipList.get(i);
 ////            SystemUtil.androididList.get(i);
 ////            SystemUtil.versionList.get(i).getSdkInt();
-//            System.out.println("add(new Info(\""+SystemUtil.screenInfoList.get(i).getScreenWidth()+"\"," +
-//                    "\""+SystemUtil.screenInfoList.get(i).getScreenHeight()+"\"," +
-//                    "\""+SystemUtil.screenInfoList.get(i).getScreenDensity()+"\"," +
-//                    "\""+SystemUtil.phoneInfoList.get(i).getModel()+"\"," +
-//                    "\""+SystemUtil.phoneInfoList.get(i).getDevice()+"\"," +
-//                    "\""+SystemUtil.versionList.get(i).getVersion()+"\"," +
-//                    "\""+SystemUtil.phoneInfoList.get(i).getMiuiVersion()+"\"," +
-//                    "\""+SystemUtil.phoneInfoList.get(i).getMake()+"\"," +
-//                    "\""+SystemUtil.imeiList.get(i)+"\"," +
-//                    "\""+SystemUtil.macList.get(i)+"\"," +
-//                    "\"zh\"," +
-//                    "\"CN\"," +
-//                    "\"1\"," +
-//                    "\""+SystemUtil.ipList.get(i)+"\"," +
-//                    "\""+SystemUtil.androididList.get(i)+"\"," +
-//                    "\""+SystemUtil.versionList.get(i).getSdkInt()+"\"));");
-//        }
+            System.out.println("add(new Info(\""+SystemUtil.screenInfoList.get(i).getScreenWidth()+"\"," +
+                    "\""+SystemUtil.screenInfoList.get(i).getScreenHeight()+"\"," +
+                    "\""+SystemUtil.screenInfoList.get(i).getScreenDensity()+"\"," +
+                    "\""+SystemUtil.phoneInfoList.get(i).getModel()+"\"," +
+                    "\""+SystemUtil.phoneInfoList.get(i).getDevice()+"\"," +
+                    "\""+SystemUtil.versionList.get(i).getVersion()+"\"," +
+                    "\""+SystemUtil.phoneInfoList.get(i).getMiuiVersion()+"\"," +
+                    "\""+SystemUtil.phoneInfoList.get(i).getMake()+"\"," +
+                    "\""+SystemUtil.imeiList.get(i)+"\"," +
+                    "\""+SystemUtil.macList.get(i)+"\"," +
+                    "\"zh\"," +
+                    "\"CN\"," +
+                    "\"1\"," +
+                    "\""+SystemUtil.ipList.get(i)+"\"," +
+                    "\""+SystemUtil.androididList.get(i)+"\"," +
+                    "\""+SystemUtil.versionList.get(i).getSdkInt()+"\"));");
+        }
 
     }
 
