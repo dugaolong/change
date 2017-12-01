@@ -97,7 +97,7 @@ public class Main implements IXposedHookLoadPackage {
                 HookMethodDisplayMetrics("android.content.res.Resources", "getDisplayMetrics", lpp);
 //                HookMethodDisplayGetMetrics("android.view.Display", "getMetrics", lpp);
 
-//                HookMethodIpAddress("android.net.wifi.WifiInfo", "getIpAddress", lpp);
+                HookMethodIpAddress("android.net.wifi.WifiInfo", "getIpAddress", lpp);
                 HookMethodHostAddress("java.net.InetAddress", "getHostAddress", lpp);
                 HookMethodSimCountryIso("android.telephony.TelephonyManager", "getSimCountryIso", lpp);
                 HookMethodConnectionType("android.net.NetworkInfo", "getType", lpp);
