@@ -16,8 +16,8 @@ public class Test {
 //           createRandomAndroidid(16);
 //            createRandomScreen();
 //            createRandomVersion();
-//            createRandomPhone();
-            createRandomIp();
+            createRandomPhone();
+//            createRandomIp();
 //            createRandom900Mac();
 //        System.out.println(( new Random().nextInt(254)+1));
         }
@@ -211,7 +211,7 @@ public class Test {
 
     public static void createRandomPhone() {
         Random rand = new Random();//随机用以下三个随机生成器
-        int indexPhone = rand.nextInt(3);
+        int indexPhone = rand.nextInt(9);
         //目的是随机选择生成数字，大小写字母
         switch (indexPhone) {
             case 0://xiaomi
@@ -363,7 +363,7 @@ public class Test {
                         break;
                 }
                 break;
-            case 5://360
+            case 4://360
                 int indexModel5 = rand.nextInt(2);
                 switch (indexModel5) {
                     case 0://
@@ -374,10 +374,10 @@ public class Test {
                         break;
                 }
                 break;
-            case 6://BlackBerry
+            case 5://BlackBerry
                 System.out.println("add(new PhoneInfo(\"STV100-3\",\"STV1003\",\"7.6.78\",\"BlackBerry\"));");
                 break;
-            case 7://Lenovo
+            case 6://Lenovo
                 int indexModel7 = rand.nextInt(7);
                 switch (indexModel7) {
                     case 0://
@@ -403,7 +403,7 @@ public class Test {
                         break;
                 }
                 break;
-            case 8://Meizu
+            case 7://Meizu
                 int indexModel8 = rand.nextInt(10);
                 switch (indexModel8) {
                     case 0://
@@ -438,7 +438,7 @@ public class Test {
                         break;
                 }
                 break;
-            case 9://samsung
+            case 8://samsung
                 int indexModel9 = rand.nextInt(22);
                 switch (indexModel9) {
                     case 0://

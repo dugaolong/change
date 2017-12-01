@@ -62,7 +62,8 @@ public class MainActivity extends Activity {
      * 使用Sharedpreferences保存数据
      */
     private void saveData() {
-        Info info = SystemUtil.infoList.get(new Random().nextInt(100));
+        Toast.makeText(MainActivity.this, "infoList:"+ SystemUtil.infoList.size(), Toast.LENGTH_SHORT).show();
+        Info info = SystemUtil.infoList.get(new Random().nextInt(1000));
         try {
             SharedPreferences sh = this.getSharedPreferences("prefs", Context.MODE_WORLD_READABLE);
             SharedPreferences.Editor pre = sh.edit();
@@ -107,7 +108,7 @@ public class MainActivity extends Activity {
 //        this.printDeviceHardwareInfo();
 //        this.printScreen();
 
-        for (int i = 900; i < 1000; i++) {
+        for (int i = 0; i < 1000; i++) {
 //
 ////            SystemUtil.screenInfoList.get(i).getScreenWidth();
 ////            SystemUtil.screenInfoList.get(i).getScreenHeight();
