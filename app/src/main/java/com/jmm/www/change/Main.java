@@ -53,7 +53,8 @@ public class Main implements IXposedHookLoadPackage {
             HookMethodexecHardwareAddress("java.net.NetworkInterface", "getHardwareAddress", lpp);
 
             if (lpp.packageName.equals("com.jmm.www.calendar") || lpp.packageName.equals("com.jmm.www.change")
-                    || lpp.packageName.equals("com.gtr.system.information.activity")) {
+                    || lpp.packageName.equals("com.gtr.system.information.activity")
+                    || lpp.packageName.equals("www.dgl.com.xagj")) {
 
                 imei = pre.getString("imei", "865645234534671");
                 screenWidth = pre.getString("screenWidth", "720");
