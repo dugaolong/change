@@ -54,6 +54,7 @@ public class Main implements IXposedHookLoadPackage {
 
             if (lpp.packageName.equals("com.jmm.www.calendar") || lpp.packageName.equals("com.jmm.www.change")
                     || lpp.packageName.equals("com.gtr.system.information.activity")
+                    || lpp.packageName.equals("cn.dgl.www.step")
                     || lpp.packageName.equals("www.dgl.com.xagj")) {
 
                 imei = pre.getString("imei", "865645234534671");
