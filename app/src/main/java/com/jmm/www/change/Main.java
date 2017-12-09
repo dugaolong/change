@@ -45,17 +45,15 @@ public class Main implements IXposedHookLoadPackage {
             XposedBridge.log("packageName: " + lpp.processName);
             //获得Sharedpreference保存的数据
             XSharedPreferences pre = new XSharedPreferences(this.getClass().getPackage().getName(), "prefs");
-            mac = pre.getString("mac", "b4:0b:44:31:60:5c");
-            HookMethodMacAddress("android.net.wifi.WifiInfo", "getMacAddress", lpp);
-            HookMethodexec("java.io.LineNumberReader", "readLine", lpp);
-            HookMethodexecBR("java.io.BufferedReader", "readLine", lpp);
-            HookMethodexec2("java.lang.String", "toUpperCase", lpp);
-            HookMethodexecHardwareAddress("java.net.NetworkInterface", "getHardwareAddress", lpp);
 
-            if (lpp.packageName.equals("com.jmm.www.calendar") || lpp.packageName.equals("com.jmm.www.change")
+
+            if (lpp.packageName.equals("com.jmm.www.calendar")//知日历(mi)
+                    || lpp.packageName.equals("com.jmm.www.change")
                     || lpp.packageName.equals("com.gtr.system.information.activity")
-                    || lpp.packageName.equals("cn.dgl.www.step")
-                    || lpp.packageName.equals("www.dgl.com.xagj")) {
+                    || lpp.packageName.equals("cn.dgl.www.step")//乐动记步(you)
+                    || lpp.packageName.equals("com.dgl.www.xagj")//西安公交(meizu)
+                    || lpp.packageName.equals("www.dgl.com.xagj")//西安公交(you)
+                    ) {
 
                 imei = pre.getString("imei", "865645234534671");
                 screenWidth = pre.getString("screenWidth", "720");
@@ -72,6 +70,7 @@ public class Main implements IXposedHookLoadPackage {
                 connectionType = pre.getString("connectionType", "1");
                 ip = pre.getString("ip", "172.24.197.223");
                 androidId = pre.getString("androidId", "n4v489lh6b2ma24b");
+                mac = pre.getString("mac", "b4:0b:44:31:60:5c");
 
                 XposedBridge.log("info: " + "\n" + imei
                         + "\n" + screenWidth
@@ -104,7 +103,11 @@ public class Main implements IXposedHookLoadPackage {
                 HookMethodSimCountryIso("android.telephony.TelephonyManager", "getSimCountryIso", lpp);
                 HookMethodConnectionType("android.net.NetworkInfo", "getType", lpp);
 
-
+                HookMethodMacAddress("android.net.wifi.WifiInfo", "getMacAddress", lpp);
+                HookMethodexec("java.io.LineNumberReader", "readLine", lpp);
+                HookMethodexecBR("java.io.BufferedReader", "readLine", lpp);
+                HookMethodexec2("java.lang.String", "toUpperCase", lpp);
+                HookMethodexecHardwareAddress("java.net.NetworkInterface", "getHardwareAddress", lpp);
 //                XposedHelpers.setStaticObjectField(android.os.Build.class, "HARDWARE", "qcom");//设备硬件名称
                 XposedHelpers.setStaticObjectField(android.os.Build.class, "MANUFACTURER", make);//设备制造商
                 XposedHelpers.setStaticObjectField(android.os.Build.class, "BRAND", make);
