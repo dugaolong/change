@@ -422,7 +422,7 @@ public class Info {
 
     /***
      * mac地址
-     *
+     *  真实的
      *
      70:F0:87:A4:D1:F4
      88:d5:0c:dd:cc:f1

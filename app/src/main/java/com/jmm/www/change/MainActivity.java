@@ -108,37 +108,32 @@ public class MainActivity extends Activity {
 //        this.printDeviceHardwareInfo();
 //        this.printScreen();
 
-//        for (int i = 0; i < 1000; i++) {
-//
-////            SystemUtil.screenInfoList.get(i).getScreenWidth();
-////            SystemUtil.screenInfoList.get(i).getScreenHeight();
-////            SystemUtil.screenInfoList.get(i).getScreenDensity();
-////            SystemUtil.phoneInfoList.get(i).getModel();
-////            SystemUtil.phoneInfoList.get(i).getDevice();
-////            SystemUtil.versionList.get(i).getVersion();
-////            SystemUtil.phoneInfoList.get(i).getMiuiVersion();
-////            SystemUtil.phoneInfoList.get(i).getMake();
-////            SystemUtil.imeiList.get(i);
-////            SystemUtil.macList.get(i);
-////            SystemUtil.ipList.get(i);
-////            SystemUtil.androididList.get(i);
-////            SystemUtil.versionList.get(i).getSdkInt();
-//            System.out.println("add(new Info(\""+SystemUtil.screenInfoList.get(i).getScreenWidth()+"\"," +
-//                    "\""+SystemUtil.screenInfoList.get(i).getScreenHeight()+"\"," +
-//                    "\""+SystemUtil.screenInfoList.get(i).getScreenDensity()+"\"," +
-//                    "\""+SystemUtil.phoneInfoList.get(i).getModel()+"\"," +
-//                    "\""+SystemUtil.phoneInfoList.get(i).getDevice()+"\"," +
-//                    "\""+SystemUtil.versionList.get(i).getVersion()+"\"," +
-//                    "\""+SystemUtil.phoneInfoList.get(i).getMiuiVersion()+"\"," +
-//                    "\""+SystemUtil.phoneInfoList.get(i).getMake()+"\"," +
-//                    "\""+SystemUtil.imeiList.get(i)+"\"," +
-//                    "\""+SystemUtil.macList.get(i)+"\"," +
+//        System.out.println("==screenInfoList=="+screenInfoList.size());
+//        System.out.println("==phoneInfoList=="+phoneInfoList.size());
+//        System.out.println("==versionList=="+versionList.size());
+//        System.out.println("==imeiList=="+imeiList.size());
+//        System.out.println("==macList=="+macList.size());
+//        System.out.println("==ipList=="+ipList.size());
+//        System.out.println("==androididList=="+androididList.size());
+        //生成手机信息
+//        for (int i = 0; i < 500; i++) {
+//            System.out.print(i+"====");
+//            System.out.println("add(new Info(\""+ screenInfoList.get(i).getScreenWidth()+"\"," +
+//                    "\""+ screenInfoList.get(i).getScreenHeight()+"\"," +
+//                    "\""+ screenInfoList.get(i).getScreenDensity()+"\"," +
+//                    "\""+ phoneInfoList.get(i).getModel()+"\"," +
+//                    "\""+ phoneInfoList.get(i).getDevice()+"\"," +
+//                    "\""+ versionList.get(i).getVersion()+"\"," +
+//                    "\""+ phoneInfoList.get(i).getMiuiVersion()+"\"," +
+//                    "\""+ phoneInfoList.get(i).getMake()+"\"," +
+//                    "\""+ imeiList.get(i)+"\"," +
+//                    "\""+ macList.get(i)+"\"," +
 //                    "\"zh\"," +
 //                    "\"CN\"," +
 //                    "\"1\"," +
-//                    "\""+SystemUtil.ipList.get(i)+"\"," +
-//                    "\""+SystemUtil.androididList.get(i)+"\"," +
-//                    "\""+SystemUtil.versionList.get(i).getSdkInt()+"\"));");
+//                    "\""+ ipList.get(i)+"\"," +
+//                    "\""+ androididList.get(i)+"\"," +
+//                    "\""+ versionList.get(i).getSdkInt()+"\"));");
 //        }
 
     }

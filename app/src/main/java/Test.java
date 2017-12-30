@@ -1,6 +1,14 @@
 import java.lang.reflect.Method;
 import java.util.Random;
 
+import static com.jmm.www.change.SystemUtil.androididList;
+import static com.jmm.www.change.SystemUtil.imeiList;
+import static com.jmm.www.change.SystemUtil.ipList;
+import static com.jmm.www.change.SystemUtil.macList;
+import static com.jmm.www.change.SystemUtil.phoneInfoList;
+import static com.jmm.www.change.SystemUtil.screenInfoList;
+import static com.jmm.www.change.SystemUtil.versionList;
+
 /**
  * Created by dugaolong on 17/11/18.
  */
@@ -11,16 +19,16 @@ public class Test {
 
     public static void main(String[] args) {
 //        System.out.println((16 + new Random().nextInt(15)));
-        for (int i = 0; i < 1000; i++) {
+//        for (int i = 0; i < 1000; i++) {
 //            System.out.println("add(\""+randomIMEI()+"\");");
 //           createRandomAndroidid(16);
 //            createRandomScreen();
 //            createRandomVersion();
-            createRandomPhone();
+//            createRandomPhone();
 //            createRandomIp();
 //            createRandom900Mac();
 //        System.out.println(( new Random().nextInt(254)+1));
-        }
+//        }
 
 //        getNewMac();
 //        changeMac2byte();
@@ -29,6 +37,25 @@ public class Test {
 //        getMethodInfo("android.telephony.TelephonyManager");
 //        String hexString = "E0:A3:AC:2F:76:20";
 //        mac2Array(hexString);
+
+        for (int i = 0; i < 1000; i++) {
+            System.out.println("add(new Info(\""+ screenInfoList.get(i).getScreenWidth()+"\"," +
+                    "\""+ screenInfoList.get(i).getScreenHeight()+"\"," +
+                    "\""+ screenInfoList.get(i).getScreenDensity()+"\"," +
+                    "\""+ phoneInfoList.get(i).getModel()+"\"," +
+                    "\""+ phoneInfoList.get(i).getDevice()+"\"," +
+                    "\""+ versionList.get(i).getVersion()+"\"," +
+                    "\""+ phoneInfoList.get(i).getMiuiVersion()+"\"," +
+                    "\""+ phoneInfoList.get(i).getMake()+"\"," +
+                    "\""+ imeiList.get(i)+"\"," +
+                    "\""+ macList.get(i)+"\"," +
+                    "\"zh\"," +
+                    "\"CN\"," +
+                    "\"1\"," +
+                    "\""+ ipList.get(i)+"\"," +
+                    "\""+ androididList.get(i)+"\"," +
+                    "\""+ versionList.get(i).getSdkInt()+"\"));");
+        }
 
     }
 
@@ -647,8 +674,8 @@ public class Test {
             byte[] macBytes = new byte[]{12, 23, 34, 45, 56, 67};
             StringBuilder res1 = new StringBuilder();
             for (byte b : macBytes) {
-                System.out.println("b: " + b);
-                System.out.println(String.format("%02X:", b));
+//                System.out.println("b: " + b);
+//                System.out.println(String.format("%02X:", b));
                 res1.append(String.format("%02X:", b));
             }
             if (res1.length() > 0) {
