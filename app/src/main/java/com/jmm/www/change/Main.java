@@ -54,6 +54,7 @@ public class Main implements IXposedHookLoadPackage {
                     || lpp.packageName.equals("com.dgl.www.xagj")//西安公交(meizu)
                     || lpp.packageName.equals("www.dgl.com.xagj")//西安公交(you)
                     || lpp.packageName.equals("com.jxh.www.basketball")//篮球
+                    || lpp.packageName.equals("cn.zcl.www.taiji")//太极
                     ) {
 
                 imei = pre.getString("imei", "865645234534671");
