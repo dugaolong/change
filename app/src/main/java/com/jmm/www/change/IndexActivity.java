@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.jmm.www.change.bean.Info;
+
 import java.util.Random;
 
 /**

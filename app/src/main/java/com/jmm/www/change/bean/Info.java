@@ -1,4 +1,4 @@
-package com.jmm.www.change;
+package com.jmm.www.change.bean;
 
 /**
  * Created by dugaolong on 17/11/19.

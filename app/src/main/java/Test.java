@@ -11,6 +11,7 @@ import static com.jmm.www.change.SystemUtil.versionList;
 
 /**
  * Created by dugaolong on 17/11/18.
+ * main方法中共有
  */
 
 public class Test {
@@ -18,16 +19,14 @@ public class Test {
     public static String aaa;
 
     public static void main(String[] args) {
-//        System.out.println((16 + new Random().nextInt(15)));
 //        for (int i = 0; i < 1000; i++) {
-//            System.out.println("add(\""+randomIMEI()+"\");");
-//           createRandomAndroidid(16);
-//            createRandomScreen();
-//            createRandomVersion();
-//            createRandomPhone();
-//            createRandomIp();
-//            createRandom900Mac();
-//        System.out.println(( new Random().nextInt(254)+1));
+//            System.out.println("add(\""+randomIMEI()+"\");");//imei
+//            createRandomVersion();//手机版本号
+//            createRandomAndroidid(16);//androidid
+//            createRandomScreen();//屏幕尺寸
+//            createRandomPhoneInfo();//手机信息
+//            createRandomMac();//mac地址
+//            createRandomIp();//ip地址
 //        }
 
 //        getNewMac();
@@ -38,24 +37,24 @@ public class Test {
 //        String hexString = "E0:A3:AC:2F:76:20";
 //        mac2Array(hexString);
 
-        for (int i = 0; i < 1000; i++) {
-            System.out.println("add(new Info(\""+ screenInfoList.get(i).getScreenWidth()+"\"," +
-                    "\""+ screenInfoList.get(i).getScreenHeight()+"\"," +
-                    "\""+ screenInfoList.get(i).getScreenDensity()+"\"," +
-                    "\""+ phoneInfoList.get(i).getModel()+"\"," +
-                    "\""+ phoneInfoList.get(i).getDevice()+"\"," +
-                    "\""+ versionList.get(i).getVersion()+"\"," +
-                    "\""+ phoneInfoList.get(i).getMiuiVersion()+"\"," +
-                    "\""+ phoneInfoList.get(i).getMake()+"\"," +
-                    "\""+ imeiList.get(i)+"\"," +
-                    "\""+ macList.get(i)+"\"," +
-                    "\"zh\"," +
-                    "\"CN\"," +
-                    "\"1\"," +
-                    "\""+ ipList.get(i)+"\"," +
-                    "\""+ androididList.get(i)+"\"," +
-                    "\""+ versionList.get(i).getSdkInt()+"\"));");
-        }
+//        for (int i = 0; i < 1000; i++) {
+//            System.out.println("add(new Info(\""+ screenInfoList.get(i).getScreenWidth()+"\"," +
+//                    "\""+ screenInfoList.get(i).getScreenHeight()+"\"," +
+//                    "\""+ screenInfoList.get(i).getScreenDensity()+"\"," +
+//                    "\""+ phoneInfoList.get(i).getModel()+"\"," +
+//                    "\""+ phoneInfoList.get(i).getDevice()+"\"," +
+//                    "\""+ versionList.get(i).getVersion()+"\"," +
+//                    "\""+ phoneInfoList.get(i).getMiuiVersion()+"\"," +
+//                    "\""+ phoneInfoList.get(i).getMake()+"\"," +
+//                    "\""+ imeiList.get(i)+"\"," +
+//                    "\""+ macList.get(i)+"\"," +
+//                    "\"zh\"," +
+//                    "\"CN\"," +
+//                    "\"1\"," +
+//                    "\""+ ipList.get(i)+"\"," +
+//                    "\""+ androididList.get(i)+"\"," +
+//                    "\""+ versionList.get(i).getSdkInt()+"\"));");
+//        }
 
     }
 
@@ -150,7 +149,7 @@ public class Test {
     //0~9的ASCII为48~57
     //A~Z的ASCII为65~90
     //a~z的ASCII为97~122
-    public static void createRandom900Mac() {
+    public static void createRandomMac() {
         StringBuilder sb = new StringBuilder();
         sb.append(Integer.toHexString(new Random().nextInt(16)));
         sb.append(Integer.toHexString(new Random().nextInt(16)));
@@ -236,7 +235,7 @@ public class Test {
 
     }
 
-    public static void createRandomPhone() {
+    public static void createRandomPhoneInfo() {
         Random rand = new Random();//随机用以下三个随机生成器
         int indexPhone = rand.nextInt(9);
         //目的是随机选择生成数字，大小写字母
@@ -539,108 +538,108 @@ public class Test {
         }
     }
 
-    public static void createRandomMac() {
-        System.out.println("add(\"70:F0:87:A4:D1:F4\");");
-        System.out.println("add(\"88:d5:0c:dd:cc:f1\");");
-        System.out.println("add(\"68:3E:34:9C:86:5B\");");
-        System.out.println("add(\"48:D7:05:11:A2:F8\");");
-        System.out.println("add(\"50:01:D9:B3:F0:16\");");
-        System.out.println("add(\"f4:8b:32:63:51:92\");");
-        System.out.println("add(\"90:27:E4:33:DD:50\");");
-        System.out.println("add(\"2c:5b:b8:de:21:91\");");
-        System.out.println("add(\"64:cc:2e:43:9b:5c\");");
-        System.out.println("add(\"14:F6:5A:8E:D6:E1\");");
-        System.out.println("add(\"bc:3a:ea:f5:c8:24\");");
-        System.out.println("add(\"EC:CB:30:67:8D:E2\");");
-        System.out.println("add(\"b0:e2:35:29:5d:99\");");
-        System.out.println("add(\"FC:FC:48:A1:B8:2F\");");
-        System.out.println("add(\"bc:3a:ea:72:05:35\");");
-        System.out.println("add(\"2c:5b:b8:a3:4e:91\");");
-        System.out.println("add(\"C0:9F:05:A7:FF:92\");");
-        System.out.println("add(\"CC:08:8D:5E:28:56\");");
-        System.out.println("add(\"18:F6:43:1F:58:AD\");");
-        System.out.println("add(\"CC:08:8D:09:E1:C5\");");
-        System.out.println("add(\"60:D9:C7:5D:41:22\");");
-        System.out.println("add(\"CC:08:8D:05:04:66\");");
-        System.out.println("add(\"BC:75:74:DA:48:76\");");
-        System.out.println("add(\"74:51:ba:54:e0:8d\");");
-        System.out.println("add(\"DC:2B:2A:77:0C:6A\");");
-        System.out.println("add(\"cc:2d:83:68:86:3e\");");
-        System.out.println("add(\"74:1B:B2:B9:09:B3\");");
-        System.out.println("add(\"48:D7:05:11:A2:F8\");");
-        System.out.println("add(\"A0:86:C6:96:05:01\");");
-        System.out.println("add(\"10:2a:b3:c5:ee:c4\");");
-        System.out.println("add(\"54:dc:1d:22:5b:a6\");");
-        System.out.println("add(\"14:9D:09:6C:D5:AF\");");
-        System.out.println("add(\"14:5f:94:5d:09:3d\");");
-        System.out.println("add(\"f4:8b:32:63:51:92\");");
-        System.out.println("add(\"68:3E:34:0C:23:94\");");
-        System.out.println("add(\"54:dc:1d:29:ad:a4\");");
-        System.out.println("add(\"7c:7d:3d:f0:d2:6f\");");
-        System.out.println("add(\"70:F0:87:A4:D1:F4\");");
-        System.out.println("add(\"90:27:E4:33:DD:50\");");
-        System.out.println("add(\"74:23:44:b7:2c:81\");");
-        System.out.println("add(\"50:01:D9:B3:F0:16\");");
-        System.out.println("add(\"4C:FB:45:97:50:52\");");
-        System.out.println("add(\"fc:3f:7c:cb:90:eb\");");
-        System.out.println("add(\"b0:e2:35:f7:83:e2\");");
-        System.out.println("add(\"CC:08:8D:14:93:FB\");");
-        System.out.println("add(\"A4:44:D1:DB:6C:EF\");");
-        System.out.println("add(\"24:61:5a:0f:6f:15\");");
-        System.out.println("add(\"10:2a:b3:10:fa:eb\");");
-        System.out.println("add(\"68:96:7B:83:D8:B9\");");
-        System.out.println("add(\"75:f5:fd:4f:03:c0\");");
-        System.out.println("add(\"20:82:c0:6f:17:94\");");
-        System.out.println("add(\"8c:3a:e3:6c:e1:1b\");");
-        System.out.println("add(\"cc:08:8d:31:4e:85\");");
-        System.out.println("add(\"cc:2d:83:68:86:3e\");");
-        System.out.println("add(\"24:E3:14:0B:04:15\");");
-        System.out.println("add(\"68:df:dd:98:9d:10\");");
-        System.out.println("add(\"fc:1a:11:d9:12:4b\");");
-        System.out.println("add(\"38:BC:1A:B3:5F:EC\");");
-        System.out.println("add(\"CC:08:8D:5E:28:56\");");
-        System.out.println("add(\"ec:1d:7f:d4:78:ae\");");
-        System.out.println("add(\"4C:FB:45:97:50:52\");");
-        System.out.println("add(\"b0:e2:35:9e:f5:f0\");");
-        System.out.println("add(\"b0:e2:35:f7:83:e2\");");
-        System.out.println("add(\"40:4d:7f:c2:70:bf\");");
-        System.out.println("add(\"98:F1:70:56:F8:C4\");");
-        System.out.println("add(\"A0:8D:16:29:92:90\");");
-        System.out.println("add(\"60:92:17:AA:1D:00\");");
-        System.out.println("add(\"D8:BB:2C:A5:54:4A\");");
-        System.out.println("add(\"9C:4F:DA:30:74:C2\");");
-        System.out.println("add(\"D0:03:4B:87:E2:41\");");
-        System.out.println("add(\"28:A0:2B:16:18:26\");");
-        System.out.println("add(\"00:CD:FE:43:BD:13\");");
-        System.out.println("add(\"F0:99:BF:78:89:C8\");");
-        System.out.println("add(\"68:96:7B:83:D8:B9\");");
-        System.out.println("add(\"58:55:CA:C1:A8:48\");");
-        System.out.println("add(\"7c:7d:3d:f0:d2:6f\");");
-        System.out.println("add(\"CC:08:8D:05:04:66\");");
-        System.out.println("add(\"10:2a:b3:10:fa:eb\");");
-        System.out.println("add(\"24:61:5a:0f:6f:15\");");
-        System.out.println("add(\"74:1B:B2:B9:09:B3\");");
-        System.out.println("add(\"68:3E:34:30:4F:A1\");");
-        System.out.println("add(\"68:3E:34:A8:EB:85\");");
-        System.out.println("add(\"54:EA:A8:37:A6:3D\");");
-        System.out.println("add(\"54:dc:1d:22:5b:a6\");");
-        System.out.println("add(\"98:ff:d0:10:08:cb\");");
-        System.out.println("add(\"38:BC:1A:C0:3B:9A\");");
-        System.out.println("add(\"E0:A3:AC:2F:76:20\");");
-        System.out.println("add(\"a0:8d:16:9d:10:e0\");");
-        System.out.println("add(\"78:f5:fd:4f:03:c0\");");
-        System.out.println("add(\"e0:19:1d:4f:d1:d0\");");
-        System.out.println("add(\"40:4d:7f:c2:70:bf\");");
-        System.out.println("add(\"e8:bb:a8:a3:74:9e\");");
-        System.out.println("add(\"e4:47:90:8f:b7:3f\");");
-        System.out.println("add(\"7c:7d:3e:79:e5:ff\");");
-        System.out.println("add(\"24:1f:a0:cd:b2:a9\");");
-        System.out.println("add(\"CC:08:8D:09:E1:C5\");");
-        System.out.println("add(\"A4:44:D1:DB:6C:EF\");");
-        System.out.println("add(\"ec:5a:86:06:f8:d0\");");
-        System.out.println("add(\"DC:2B:2A:77:0C:6A\");");
-        System.out.println("add(\"b4:0b:44:31:60:5c\");");
-    }
+//    public static void createRandomMac() {
+//        System.out.println("add(\"70:F0:87:A4:D1:F4\");");
+//        System.out.println("add(\"88:d5:0c:dd:cc:f1\");");
+//        System.out.println("add(\"68:3E:34:9C:86:5B\");");
+//        System.out.println("add(\"48:D7:05:11:A2:F8\");");
+//        System.out.println("add(\"50:01:D9:B3:F0:16\");");
+//        System.out.println("add(\"f4:8b:32:63:51:92\");");
+//        System.out.println("add(\"90:27:E4:33:DD:50\");");
+//        System.out.println("add(\"2c:5b:b8:de:21:91\");");
+//        System.out.println("add(\"64:cc:2e:43:9b:5c\");");
+//        System.out.println("add(\"14:F6:5A:8E:D6:E1\");");
+//        System.out.println("add(\"bc:3a:ea:f5:c8:24\");");
+//        System.out.println("add(\"EC:CB:30:67:8D:E2\");");
+//        System.out.println("add(\"b0:e2:35:29:5d:99\");");
+//        System.out.println("add(\"FC:FC:48:A1:B8:2F\");");
+//        System.out.println("add(\"bc:3a:ea:72:05:35\");");
+//        System.out.println("add(\"2c:5b:b8:a3:4e:91\");");
+//        System.out.println("add(\"C0:9F:05:A7:FF:92\");");
+//        System.out.println("add(\"CC:08:8D:5E:28:56\");");
+//        System.out.println("add(\"18:F6:43:1F:58:AD\");");
+//        System.out.println("add(\"CC:08:8D:09:E1:C5\");");
+//        System.out.println("add(\"60:D9:C7:5D:41:22\");");
+//        System.out.println("add(\"CC:08:8D:05:04:66\");");
+//        System.out.println("add(\"BC:75:74:DA:48:76\");");
+//        System.out.println("add(\"74:51:ba:54:e0:8d\");");
+//        System.out.println("add(\"DC:2B:2A:77:0C:6A\");");
+//        System.out.println("add(\"cc:2d:83:68:86:3e\");");
+//        System.out.println("add(\"74:1B:B2:B9:09:B3\");");
+//        System.out.println("add(\"48:D7:05:11:A2:F8\");");
+//        System.out.println("add(\"A0:86:C6:96:05:01\");");
+//        System.out.println("add(\"10:2a:b3:c5:ee:c4\");");
+//        System.out.println("add(\"54:dc:1d:22:5b:a6\");");
+//        System.out.println("add(\"14:9D:09:6C:D5:AF\");");
+//        System.out.println("add(\"14:5f:94:5d:09:3d\");");
+//        System.out.println("add(\"f4:8b:32:63:51:92\");");
+//        System.out.println("add(\"68:3E:34:0C:23:94\");");
+//        System.out.println("add(\"54:dc:1d:29:ad:a4\");");
+//        System.out.println("add(\"7c:7d:3d:f0:d2:6f\");");
+//        System.out.println("add(\"70:F0:87:A4:D1:F4\");");
+//        System.out.println("add(\"90:27:E4:33:DD:50\");");
+//        System.out.println("add(\"74:23:44:b7:2c:81\");");
+//        System.out.println("add(\"50:01:D9:B3:F0:16\");");
+//        System.out.println("add(\"4C:FB:45:97:50:52\");");
+//        System.out.println("add(\"fc:3f:7c:cb:90:eb\");");
+//        System.out.println("add(\"b0:e2:35:f7:83:e2\");");
+//        System.out.println("add(\"CC:08:8D:14:93:FB\");");
+//        System.out.println("add(\"A4:44:D1:DB:6C:EF\");");
+//        System.out.println("add(\"24:61:5a:0f:6f:15\");");
+//        System.out.println("add(\"10:2a:b3:10:fa:eb\");");
+//        System.out.println("add(\"68:96:7B:83:D8:B9\");");
+//        System.out.println("add(\"75:f5:fd:4f:03:c0\");");
+//        System.out.println("add(\"20:82:c0:6f:17:94\");");
+//        System.out.println("add(\"8c:3a:e3:6c:e1:1b\");");
+//        System.out.println("add(\"cc:08:8d:31:4e:85\");");
+//        System.out.println("add(\"cc:2d:83:68:86:3e\");");
+//        System.out.println("add(\"24:E3:14:0B:04:15\");");
+//        System.out.println("add(\"68:df:dd:98:9d:10\");");
+//        System.out.println("add(\"fc:1a:11:d9:12:4b\");");
+//        System.out.println("add(\"38:BC:1A:B3:5F:EC\");");
+//        System.out.println("add(\"CC:08:8D:5E:28:56\");");
+//        System.out.println("add(\"ec:1d:7f:d4:78:ae\");");
+//        System.out.println("add(\"4C:FB:45:97:50:52\");");
+//        System.out.println("add(\"b0:e2:35:9e:f5:f0\");");
+//        System.out.println("add(\"b0:e2:35:f7:83:e2\");");
+//        System.out.println("add(\"40:4d:7f:c2:70:bf\");");
+//        System.out.println("add(\"98:F1:70:56:F8:C4\");");
+//        System.out.println("add(\"A0:8D:16:29:92:90\");");
+//        System.out.println("add(\"60:92:17:AA:1D:00\");");
+//        System.out.println("add(\"D8:BB:2C:A5:54:4A\");");
+//        System.out.println("add(\"9C:4F:DA:30:74:C2\");");
+//        System.out.println("add(\"D0:03:4B:87:E2:41\");");
+//        System.out.println("add(\"28:A0:2B:16:18:26\");");
+//        System.out.println("add(\"00:CD:FE:43:BD:13\");");
+//        System.out.println("add(\"F0:99:BF:78:89:C8\");");
+//        System.out.println("add(\"68:96:7B:83:D8:B9\");");
+//        System.out.println("add(\"58:55:CA:C1:A8:48\");");
+//        System.out.println("add(\"7c:7d:3d:f0:d2:6f\");");
+//        System.out.println("add(\"CC:08:8D:05:04:66\");");
+//        System.out.println("add(\"10:2a:b3:10:fa:eb\");");
+//        System.out.println("add(\"24:61:5a:0f:6f:15\");");
+//        System.out.println("add(\"74:1B:B2:B9:09:B3\");");
+//        System.out.println("add(\"68:3E:34:30:4F:A1\");");
+//        System.out.println("add(\"68:3E:34:A8:EB:85\");");
+//        System.out.println("add(\"54:EA:A8:37:A6:3D\");");
+//        System.out.println("add(\"54:dc:1d:22:5b:a6\");");
+//        System.out.println("add(\"98:ff:d0:10:08:cb\");");
+//        System.out.println("add(\"38:BC:1A:C0:3B:9A\");");
+//        System.out.println("add(\"E0:A3:AC:2F:76:20\");");
+//        System.out.println("add(\"a0:8d:16:9d:10:e0\");");
+//        System.out.println("add(\"78:f5:fd:4f:03:c0\");");
+//        System.out.println("add(\"e0:19:1d:4f:d1:d0\");");
+//        System.out.println("add(\"40:4d:7f:c2:70:bf\");");
+//        System.out.println("add(\"e8:bb:a8:a3:74:9e\");");
+//        System.out.println("add(\"e4:47:90:8f:b7:3f\");");
+//        System.out.println("add(\"7c:7d:3e:79:e5:ff\");");
+//        System.out.println("add(\"24:1f:a0:cd:b2:a9\");");
+//        System.out.println("add(\"CC:08:8D:09:E1:C5\");");
+//        System.out.println("add(\"A4:44:D1:DB:6C:EF\");");
+//        System.out.println("add(\"ec:5a:86:06:f8:d0\");");
+//        System.out.println("add(\"DC:2B:2A:77:0C:6A\");");
+//        System.out.println("add(\"b4:0b:44:31:60:5c\");");
+//    }
 
     public static void createRandomIp() {
         Random rand = new Random();//随机用以下三个随机生成器
